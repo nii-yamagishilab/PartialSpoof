@@ -2,8 +2,6 @@
 	
 FILE_NAMEs=(train dev eval segment_labels_v1.2 protocols)
 
-FILE_NAMEs=(segment_labels_v1.2)
-
 
 for file in ${FILE_NAMEs}; do
 
