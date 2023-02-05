@@ -12,6 +12,8 @@
 database/con_wav/
 database/segment_labels/
 
+.nfs*
+
 
 #https://github.com/github/gitignore/blob/main/Python.gitignore
 # Byte-compiled / optimized / DLL files
