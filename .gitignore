@@ -9,7 +9,7 @@
 # Generated file
 03multireso/multi-reso/output/
 
-database/con_wav/
+database/**/con_wav/
 database/segment_labels/
 
 

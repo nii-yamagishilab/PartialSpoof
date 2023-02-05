@@ -1,12 +1,10 @@
 #!/bin/bash
 	
-FILE_NAMEs=(train dev eval segment_labels_v1.2 protocols)
-
-
+FILE_NAMEs=(single-reso multi-reso)
 
 for file in ${FILE_NAMEs}; do
 
-    link="https://zenodo.org/record/5766198/files/database_"${file}".tar.gz?download=1"
+    link="https://zenodo.org/record/6674660/files/"${file}".tar.gz?download=1"
     if [ ! -e ./database/${file} ];then
         echo -e "${RED}Downloading PartialSpoof ${name}"
 	echo ${link}
