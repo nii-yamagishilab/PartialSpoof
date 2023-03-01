@@ -45,14 +45,14 @@ It is appreciated if you can cite the corresponding paper when the idea, code, a
 ```
 
 ```
-@ARTICLE{10003971,
+@article{10003971,
   author={Zhang, Lin and Wang, Xin and Cooper, Erica and Evans, Nicholas and Yamagishi, Junichi},
   journal={IEEE/ACM Transactions on Audio, Speech, and Language Processing}, 
   title={The PartialSpoof Database and Countermeasures for the Detection of Short Fake Speech Segments Embedded in an Utterance}, 
-  year={2022},
-  volume={},
+  year={2023},
+  volume={31},
   number={},
-  pages={1-13},
+  pages={813-825},
   doi={10.1109/TASLP.2022.3233236}}
 ```
 
