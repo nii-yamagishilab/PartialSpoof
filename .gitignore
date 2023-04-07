@@ -1,8 +1,11 @@
-# Not clean:
+# in preparing
 00data-prepare
 01singletask
 02multitask
 
+# Generated file
+03multireso/multi-reso/output/
+database
 
 # Project
 *.dic
@@ -10,13 +13,6 @@
 *.pt
 *.npy
 *.wav
-
-# Generated file
-03multireso/multi-reso/output/
-
-database/con_wav/
-database/segment_labels/
-
 .nfs*
 *exp*
 
