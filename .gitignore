@@ -1,3 +1,6 @@
+# Not clean:
+00data-prepare
+
 
 # Project
 *.dic
@@ -13,6 +16,7 @@ database/con_wav/
 database/segment_labels/
 
 .nfs*
+*exp*
 
 
 #https://github.com/github/gitignore/blob/main/Python.gitignore
