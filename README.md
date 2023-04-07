@@ -66,7 +66,7 @@ It is appreciated if you can cite the corresponding paper when the idea, code, a
 
 ```
 PartialSpoof
-├── 01_download_database.sh
+├── 01_download_database.sh		: Script used to download PartialSpoof from zenodo.
 ├── 03multireso
 │   ├── env.sh
 │   ├── main.py
@@ -74,12 +74,12 @@ PartialSpoof
 │   ├── multi-reso
 │   └── single-reso
 │       └── {2, 4, 8, 16, 32, 64, utt}
-├── config_ps
+├── config_ps				: Config files for experiments
 │   ├── config_test_on_dev.py
 │   └── config_test_on_eval.py
-├── database
-│   ├── dev
-│   │   ├── con_data
+├── database				: PartialSpoof Databases
+│   ├── dev				: Folder for dev set
+│   │   ├── dev.lst
 │   │   └── con_wav
 │   ├── eval
 │   ├── segment_labels
@@ -88,13 +88,11 @@ PartialSpoof
 │   ├── gmlp.py
 │   ├── multi_scale
 │   │   └── post.py
-│   ├── s3prl 
-│   └── ssl_pretrain 
-├── project-NN-Pytorch-scripts.202102
+│   ├── s3prl  	     			: s3prl repo 
+│   └── ssl_pretrain 			: Folder to save downloaded pretrained ssl model
+├── project-NN-Pytorch-scripts.202102	: Modified project-NN-Pytorch-scripts repo
 └── README.md
 ```
-
-
 
 
 
