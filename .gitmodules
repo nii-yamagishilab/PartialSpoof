@@ -1,0 +1,3 @@
+[submodule "modules/s3prl"]
+	path = modules/s3prl
+	url = https://github.com/s3prl/s3prl.git

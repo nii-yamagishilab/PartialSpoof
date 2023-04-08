@@ -1,3 +1,11 @@
+#!/usr/bin/env python
+
+# Copyright (c) 2023, National Institute of Informatics 
+# @Authors: Lin Zhang
+# @Emails: zhanglin@nii.ac.jp
+#
+# Licensed under BSD 3-Clause License 
+
 '''
     implement multi-reso CM
 '''

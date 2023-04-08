@@ -1,5 +1,9 @@
+#!/usr/bin/env python
+
+# This gmlp.py is adapted from below scripts:
 # https://github.com/labmlai/annotated_deep_learning_paper_implementations/blob/aacd926dba97ba7a1d67a3631120c46d0670ba94/labml_nn/transformers/gmlp/__init__.py#L27
 # https://nn.labml.ai/transformers/gmlp/index.html
+# and follows MIT License which can be found in modules/LICENSE 
 
 """
 ---
