@@ -9,12 +9,18 @@ Lin Zhang; Xin Wang; Erica Cooper; Nicholas Evans; Junichi Yamagishi
 
 ## Folder and its paper
 
+<<<<<<< HEAD
 | Folder             | Paper                                                        |
 | ------------------ | ------------------------------------------------------------ |
 | 00data-prepare     | Processing to generate PartialSpoof database and automatic annotation. (To be released) |
 | 01singletask  | CM trained on the single task (either utterance-level or segment-level detection) in the paper [An Initial Investigation for Detecting Partially Spoofed Audio](https://nii-yamagishilab.github.io/publication/zhang-21-ca-interspeech/) (To be released) |
 | 02multitask | CM trained on multi tasks (both utterance-level and segment-level detection) in the paper [Multi-task Learning in Utterance-level and Segmental-level Spoof Detection](https://nii-yamagishilab.github.io/publication/zhang-21-asvspoof/) (To be released) |
 | 03multireso        | Multi resolution CM in the paper [The PartialSpoof Database and Countermeasures for the Detection of Short Fake Speech Segments Embedded in an Utterance](https://ieeexplore.ieee.org/document/10003971) |
+=======
+| Folder      | Paper                                                        |
+| ----------- | ------------------------------------------------------------ |
+| 03multireso | Multi resolution CM in the paper [The PartialSpoof Database and Countermeasures for the Detection of Short Fake Speech Segments Embedded in an Utterance](https://ieeexplore.ieee.org/document/10003971) |
+>>>>>>> cf259558c31dd6a5b640281ff0c413631f659630
 
 
 
@@ -24,7 +30,10 @@ It is appreciated if you can cite the corresponding paper when the idea, code, a
 
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> cf259558c31dd6a5b640281ff0c413631f659630
 ```
 @inproceedings{zhang21ca_interspeech,
   author={Lin Zhang and Xin Wang and Erica Cooper and Junichi Yamagishi and Jose Patino and Nicholas Evans},
@@ -66,7 +75,11 @@ It is appreciated if you can cite the corresponding paper when the idea, code, a
 
 ```
 PartialSpoof
+<<<<<<< HEAD
 ├── 01_download_database.sh		: Script used to download PartialSpoof from zenodo.
+=======
+├── 01_download_database.sh
+>>>>>>> cf259558c31dd6a5b640281ff0c413631f659630
 ├── 03multireso
 │   ├── env.sh
 │   ├── main.py
@@ -74,12 +87,21 @@ PartialSpoof
 │   ├── multi-reso
 │   └── single-reso
 │       └── {2, 4, 8, 16, 32, 64, utt}
+<<<<<<< HEAD
 ├── config_ps				: Config files for experiments
 │   ├── config_test_on_dev.py
 │   └── config_test_on_eval.py
 ├── database				: PartialSpoof Databases
 │   ├── dev				: Folder for dev set
 │   │   ├── dev.lst
+=======
+├── config_ps
+│   ├── config_test_on_dev.py
+│   └── config_test_on_eval.py
+├── database
+│   ├── dev
+│   │   ├── con_data
+>>>>>>> cf259558c31dd6a5b640281ff0c413631f659630
 │   │   └── con_wav
 │   ├── eval
 │   ├── segment_labels
@@ -88,9 +110,15 @@ PartialSpoof
 │   ├── gmlp.py
 │   ├── multi_scale
 │   │   └── post.py
+<<<<<<< HEAD
 │   ├── s3prl  	     			: s3prl repo 
 │   └── ssl_pretrain 			: Folder to save downloaded pretrained ssl model
 ├── project-NN-Pytorch-scripts.202102	: Modified project-NN-Pytorch-scripts repo
+=======
+│   ├── s3prl 
+│   └── ssl_pretrain 
+├── project-NN-Pytorch-scripts.202102
+>>>>>>> cf259558c31dd6a5b640281ff0c413631f659630
 └── README.md
 ```
 
