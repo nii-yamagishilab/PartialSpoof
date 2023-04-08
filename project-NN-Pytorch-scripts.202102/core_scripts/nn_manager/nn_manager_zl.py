@@ -25,9 +25,9 @@ import core_scripts.nn_manager.nn_manager_conf as nii_nn_manage_conf
 
 from core_scripts.op_manager.pcgrad import PCGrad
 
-__author__ = "Xin Wang"
-__email__ = "wangxin@nii.ac.jp"
-__copyright__ = "Copyright 2021, Xin Wang"
+__author__ = "Xin Wang, Lin Zhang"
+__email__ = "wangxin@nii.ac.jp, zhanglin@nii.ac.jp"
+__copyright__ = "Copyright 2023, Xin Wang, Lin Zhang"
 
 #############################################################
 

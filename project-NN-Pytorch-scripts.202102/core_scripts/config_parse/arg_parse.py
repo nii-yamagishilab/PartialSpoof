@@ -14,9 +14,9 @@ import argparse
 import core_scripts.other_tools.list_tools as nii_list_tools
 import core_scripts.other_tools.display as nii_display
 
-__author__ = "Xin Wang"
-__email__ = "wangxin@nii.ac.jp"
-__copyright__ = "Copyright 2020, Xin Wang"
+__author__ = "Xin Wang, Lin Zhang"
+__email__ = "wangxin@nii.ac.jp, zhanglin@nii.ac.jp"
+__copyright__ = "Copyright 2023, Xin Wang, Lin Zhang"
 
 
 
