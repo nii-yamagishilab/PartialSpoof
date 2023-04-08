@@ -107,12 +107,13 @@ This study is partially supported by the Japanese-French joint national VoicePer
 
 
 ## License
+This project is mainly licensed under the BSD 3-Clause License (`./LICENSE`). 
+Each folder within the project may contain their corresponding LICENSE according to the external libraries used. Please refer to the README.md file in each folder for more details. 
 
-This project is mainly licensed under BSD 3-Clause License (`project-NN-Pytorch-scripts/LICENSE`), 
-And each folder has its corresponding license, please go to LICENSE under each folder to get more detail. 
-Specificlly,
-modules/s3prl is under MIT LICENSE (modules/s3prl/LICENSE.txt), but please note that the lastest s3prl is under Apache License version 2.0.
-project-NN-Pytorch-scripts.202102 is under BSD 3-Clause License (project-NN-Pytorch-scripts.202102/LICENSE)
-modules/gmlp.py is under MIT LICENSE (modules/LICENSE)
+Additionally, specific licenses for some of the external libraries used are mentioned below:
+`modules/s3prl` is licensed under the MIT License (`modules/s3prl/LICENSE.txt`), but please note that the latest version of s3prl is now under the Apache License version 2.0. 
+`project-NN-Pytorch-scripts.202102` is licensed under the BSD 3-Clause License (`project-NN-Pytorch-scripts.202102/LICENSE`). 
+`modules/gmlp.py` file is licensed under the MIT License (`modules/LICENSE`)
+
 
 

@@ -158,8 +158,11 @@ To get detail for each option, please go to `project-NN-Pytorch-scripts.202102/c
 
 
 ## LICENSE
+03multireso project is mainly licensed under the BSD 3-Clause License (`PartialSpoof/LICENSE`). 
 
-SSL model in this project is based on [S3PRL](https://github.com/s3prl/s3prl) and [fairseq](https://github.com/facebookresearch/fairseq). The majority of S3PRL Toolkit is licensed under the Apache License version 2.0, however all the files authored by Facebook, Inc. (which have explicit copyright statement on the top) are licensed under CC-BY-NC.
-
+External libraries and their corresponding licenses in this project are listed below:
+`modules/s3prl` is licensed under the MIT License (`modules/s3prl/LICENSE.txt`), but please note that the latest version of s3prl is now under the Apache License version 2.0. 
+`project-NN-Pytorch-scripts.202102` is licensed under the BSD 3-Clause License (`project-NN-Pytorch-scripts.202102/LICENSE`). 
+`modules/gmlp.py` file is licensed under the MIT License (`modules/LICENSE`)
 
 
