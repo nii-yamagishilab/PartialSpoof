@@ -1,6 +1,6 @@
-Note: 
-This folder is an adapted version of the [project-NN-Pytorch-scripts
-Public](https://github.com/nii-yamagishilab/project-NN-Pytorch-scripts) with the commit ID b91de2259bbcf095cadfe83a9a2e2e7129eec523 
+_Note:_ 
+This folder is an adapted version of the [project-NN-Pytorch-scripts](https://github.com/nii-yamagishilab/project-NN-Pytorch-scripts) 
+with the commit ID b91de2259bbcf095cadfe83a9a2e2e7129eec523 
 Modified by: Lin Zhang (zhanglin@nii.ac.jp) @ NII 
 
 
