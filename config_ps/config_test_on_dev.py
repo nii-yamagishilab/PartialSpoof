@@ -29,9 +29,9 @@ CON_DATA_PATH = '/path/to/data'
 
 # File lists (text file, one data name per line, without name extension)
 # trin_file_list: list of files for training set
-trn_list = CON_DATA_PATH + '/train/con_data/train.lst'  
+trn_list = CON_DATA_PATH + '/train/train.lst'  
 # val_file_list: list of files for validation set. It can be None
-val_list = CON_DATA_PATH + '/dev/con_data/dev.lst'  
+val_list = CON_DATA_PATH + '/dev/dev.lst'  
 
 # Directories for input features
 # input_dirs = [path_of_feature_1, path_of_feature_2, ..., ]
@@ -99,7 +99,7 @@ test_set_name = 'PS_' + set_type
 # List of test set data
 # for convenience, you may directly load test_set list here
 #test_list = tmp + '/scp/test.lst'
-test_list = test_input_path + '/con_data/'+set_type+'.lst'
+test_list = test_input_path + '/'+set_type+'.lst'
 
 # Directories for input features
 # input_dirs = [path_of_feature_1, path_of_feature_2, ..., ]

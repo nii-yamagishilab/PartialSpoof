@@ -101,9 +101,9 @@ This project is mainly licensed under the BSD 3-Clause License (`./LICENSE`).
 Each folder within the project may contain their corresponding LICENSE according to the external libraries used. Please refer to the README.md file in each folder for more details. 
 
 Additionally, specific licenses for some of the external libraries used are mentioned below:
-`modules/s3prl` is licensed under the MIT License (`modules/s3prl/LICENSE.txt`), but please note that the latest version of s3prl is now under the Apache License version 2.0. 
-`project-NN-Pytorch-scripts.202102` is licensed under the BSD 3-Clause License (`project-NN-Pytorch-scripts.202102/LICENSE`). 
-`modules/gmlp.py` file is licensed under the MIT License (`modules/LICENSE`)
+* `modules/s3prl` is licensed under the MIT License (`modules/s3prl/LICENSE.txt`), but please note that the latest version of s3prl is now under the Apache License version 2.0. 
+* `project-NN-Pytorch-scripts.202102` is licensed under the BSD 3-Clause License (`project-NN-Pytorch-scripts.202102/LICENSE`). 
+* `modules/gmlp.py` file is licensed under the MIT License (`modules/LICENSE`)
 
 
 
