@@ -24,7 +24,21 @@ Please cite database and this paper if you use:
 ## Prepare
 
 * Environment
-  SSL model used in this project is based on SUPERB and fairseq. Please following [s3rpl#installation](https://github.com/s3prl/s3prl#installation) to build the enviorment. 
+  SSL model used in this project is based on s3prl. Please following [s3rpl#installation](https://github.com/s3prl/s3prl#installation) to build the enviorment. Here are two ways for downloading:
+  
+  * Option 1. If you have downloaded s3prl, Please link it to `modules/s3prl`
+  
+  `ln -s <path_to_s3prl> ../modules/s3prl`
+  
+  * Option 2. Otherwise, please download s3prl through submodule. 
+  
+  ```shell
+  cd .. #cd to PartialSpoof, since it is registered for path './'
+  git submodule init
+  git submodule update
+  ```
+  
+  
 
 
 * Database and label: PartialSpoof
@@ -35,11 +49,11 @@ Please cite database and this paper if you use:
 
 
 
-* Pre-trained models (TODO)
+* Pre-trained models 
 
   If you want to use the pretrained model, please download them by:
 
-  `bash 01_download_model.sh`
+  `bash 01_download_model.sh 1 `
 
 
 
@@ -76,11 +90,11 @@ Please cite database and this paper if you use:
 
    
 
-   **3.0 Download ssl model.**
+   * *stage = 0: Check and download ssl model.*
 
    
    
-   **3.1 Training**
+   * *stage = 1: Training*
    
    ```shell
    CON_PATH=/path/of/database
@@ -106,7 +120,7 @@ Please cite database and this paper if you use:
    
    
    
-   **3.2 inference**
+   * *Stgae = 3: Inference*
    
    ```shell
      python main.py --inference --module-model model_debug_con --model-forward-with-file-name --module-config config_ps.config_test_on_dev  \
@@ -161,8 +175,8 @@ To get detail for each option, please go to `project-NN-Pytorch-scripts.202102/c
 03multireso project is mainly licensed under the BSD 3-Clause License (`PartialSpoof/LICENSE`). 
 
 External libraries and their corresponding licenses in this project are listed below:
-`modules/s3prl` is licensed under the MIT License (`modules/s3prl/LICENSE.txt`), but please note that the latest version of s3prl is now under the Apache License version 2.0. 
-`project-NN-Pytorch-scripts.202102` is licensed under the BSD 3-Clause License (`project-NN-Pytorch-scripts.202102/LICENSE`). 
-`modules/gmlp.py` file is licensed under the MIT License (`modules/LICENSE`)
 
+* `modules/s3prl` is licensed under the MIT License (`modules/s3prl/LICENSE.txt`), but please note that the latest version of s3prl is now under the Apache License version 2.0. 
+* `project-NN-Pytorch-scripts.202102` is licensed under the BSD 3-Clause License (`project-NN-Pytorch-scripts.202102/LICENSE`). 
+* `modules/gmlp.py` file is licensed under the MIT License (`modules/LICENSE`)
 

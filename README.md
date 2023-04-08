@@ -20,6 +20,44 @@ Lin Zhang; Xin Wang; Erica Cooper; Nicholas Evans; Junichi Yamagishi
 
 Please go to the `[Folder]/README.md` to read details of usages.
 
+
+
+## Folder structure
+
+```
+PartialSpoof
+├── 01_download_database.sh		: Script used to download PartialSpoof from zenodo.
+├── 03multireso
+│   ├── env.sh
+│   ├── main.py
+│   ├── model.py
+│   ├── multi-reso
+│   └── single-reso
+│       └── {2, 4, 8, 16, 32, 64, utt}
+├── config_ps				: Config files for experiments
+│   ├── config_test_on_dev.py
+│   └── config_test_on_eval.py
+├── database				: PartialSpoof Databases
+│   ├── dev				: Folder for dev set
+│   │   ├── dev.lst
+│   │   └── con_wav
+│   ├── eval
+│   ├── segment_labels
+│   └── train
+├── modules
+│   ├── gmlp.py
+│   ├── multi_scale
+│   │   └── post.py
+│   ├── s3prl  	     			: s3prl repo 
+│   └── ssl_pretrain 			: Folder to save downloaded pretrained ssl model
+├── project-NN-Pytorch-scripts.202102	: Modified project-NN-Pytorch-scripts repo
+└── README.md
+```
+
+
+
+## Citation
+
 It is appreciated if you can cite the corresponding paper when the idea, code, and pretrained model are helpful to your research.
 
 ```
@@ -59,51 +97,22 @@ It is appreciated if you can cite the corresponding paper when the idea, code, a
 
 
 
-## Folder structure
-
-```
-PartialSpoof
-├── 01_download_database.sh		: Script used to download PartialSpoof from zenodo.
-├── 03multireso
-│   ├── env.sh
-│   ├── main.py
-│   ├── model.py
-│   ├── multi-reso
-│   └── single-reso
-│       └── {2, 4, 8, 16, 32, 64, utt}
-├── config_ps				: Config files for experiments
-│   ├── config_test_on_dev.py
-│   └── config_test_on_eval.py
-├── database				: PartialSpoof Databases
-│   ├── dev				: Folder for dev set
-│   │   ├── dev.lst
-│   │   └── con_wav
-│   ├── eval
-│   ├── segment_labels
-│   └── train
-├── modules
-│   ├── gmlp.py
-│   ├── multi_scale
-│   │   └── post.py
-│   ├── s3prl  	     			: s3prl repo 
-│   └── ssl_pretrain 			: Folder to save downloaded pretrained ssl model
-├── project-NN-Pytorch-scripts.202102	: Modified project-NN-Pytorch-scripts repo
-└── README.md
-```
-
 ## Acknowledgments
 
 This study is partially supported by the Japanese-French joint national VoicePersonae project supported by JST CREST (JPMJCR18A6, JPMJCR20D3), JPMJFS2136 and the ANR (ANR-18-JSTS-0001), MEXT KAKENHI Grants (21K17775, 21H04906, 21K11951, 18H04112), Japan, and Google AI for Japan program.
 
 
+
 ## License
+
 This project is mainly licensed under the BSD 3-Clause License (`./LICENSE`). 
 Each folder within the project may contain their corresponding LICENSE according to the external libraries used. Please refer to the README.md file in each folder for more details. 
 
 Additionally, specific licenses for some of the external libraries used are mentioned below:
-`modules/s3prl` is licensed under the MIT License (`modules/s3prl/LICENSE.txt`), but please note that the latest version of s3prl is now under the Apache License version 2.0. 
-`project-NN-Pytorch-scripts.202102` is licensed under the BSD 3-Clause License (`project-NN-Pytorch-scripts.202102/LICENSE`). 
-`modules/gmlp.py` file is licensed under the MIT License (`modules/LICENSE`)
+
+* `modules/s3prl` is licensed under the MIT License (`modules/s3prl/LICENSE.txt`), but please note that the latest version of s3prl is now under the Apache License version 2.0. 
+* `project-NN-Pytorch-scripts.202102` is licensed under the BSD 3-Clause License (`project-NN-Pytorch-scripts.202102/LICENSE`). 
+* `modules/gmlp.py`  is licensed under the MIT License (`modules/LICENSE`)
 
 
 
