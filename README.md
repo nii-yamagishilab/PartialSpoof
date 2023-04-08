@@ -91,19 +91,9 @@ PartialSpoof
 └── README.md
 ```
 
-
-
-## Notes
-
-This project is adapted from [project-NN-Pytorch-scripts](https://github.com/nii-yamagishilab/project-NN-Pytorch-scripts), and each script in the folder has the same function.
-
-
-
 ## Acknowledgments
 
 This study is partially supported by the Japanese-French joint national VoicePersonae project supported by JST CREST (JPMJCR18A6, JPMJCR20D3), JPMJFS2136 and the ANR (ANR-18-JSTS-0001), MEXT KAKENHI Grants (21K17775, 21H04906, 21K11951, 18H04112), Japan, and Google AI for Japan program.
-
-
 
 
 ## License
