@@ -1,4 +1,9 @@
 #!/usr/bin/env python
+
+# Copyright 2020 National Institute of Informatics (author: Xin Wang, wangxin@nii.ac.jp)
+# Copyright 2023 National Institute of Informatics (author: Lin Zhang, zhanglin@nii.ac.jp)
+# Licensed under the BSD 3-Clause License.
+
 """
 nn_manager for GAN
 
@@ -25,9 +30,6 @@ import core_scripts.nn_manager.nn_manager_conf as nii_nn_manage_conf
 
 from core_scripts.op_manager.pcgrad import PCGrad
 
-__author__ = "Xin Wang, Lin Zhang"
-__email__ = "wangxin@nii.ac.jp, zhanglin@nii.ac.jp"
-__copyright__ = "Copyright 2023, Xin Wang, Lin Zhang"
 
 #############################################################
 

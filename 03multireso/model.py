@@ -1,4 +1,9 @@
 #!/usr/bin/env python
+
+# Copyright 2021 National Institute of Informatics (author: Xin Wang, wangxin@nii.ac.jp)
+# Copyright 2023 National Institute of Informatics (author: Lin Zhang, zhanglin@nii.ac.jp)
+# Licensed under the BSD 3-Clause License.
+
 """
 model.py
 
@@ -28,9 +33,6 @@ from multi_scale.post import MaxPool1dLin_gmlp_scales
 #s3prl
 import s3prl.hub as hub
 device = 'cuda'
-__author__ = "Xin Wang, Lin Zhang"
-__email__ = "{wangxin, zhanglin}@nii.ac.jp"
-__copyright__ = "Copyright 2022, Xin Wang, Lin Zhang"
 
 ##############
 ## util

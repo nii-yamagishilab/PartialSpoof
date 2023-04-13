@@ -1,4 +1,8 @@
 #!/usr/bin/env python
+# Copyright 2021 National Institute of Informatics (author: Xin Wang, wangxin@nii.ac.jp)
+# Copyright 2023 National Institute of Informatics (author: Lin Zhang, zhanglin@nii.ac.jp)
+# Licensed under the BSD 3-Clause License.
+
 """
 config_parse
 
@@ -13,11 +17,6 @@ import argparse
 
 import core_scripts.other_tools.list_tools as nii_list_tools
 import core_scripts.other_tools.display as nii_display
-
-__author__ = "Xin Wang, Lin Zhang"
-__email__ = "wangxin@nii.ac.jp, zhanglin@nii.ac.jp"
-__copyright__ = "Copyright 2023, Xin Wang, Lin Zhang"
-
 
 
 #############################################################
