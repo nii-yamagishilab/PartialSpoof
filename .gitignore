@@ -2,6 +2,7 @@
 00data-prepare
 01singletask
 02multitask
+metric
 
 # Generated file
 03multireso/multi-reso/output/

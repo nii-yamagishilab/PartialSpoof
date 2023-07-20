@@ -15,6 +15,7 @@ Lin Zhang; Xin Wang; Erica Cooper; Nicholas Evans; Junichi Yamagishi
 | 01singletask  | CM trained on the single task (either utterance-level or segment-level detection) in the paper [An Initial Investigation for Detecting Partially Spoofed Audio](https://nii-yamagishilab.github.io/publication/zhang-21-ca-interspeech/) (To be released) |
 | 02multitask | CM trained on multi tasks (both utterance-level and segment-level detection) in the paper [Multi-task Learning in Utterance-level and Segmental-level Spoof Detection](https://nii-yamagishilab.github.io/publication/zhang-21-asvspoof/) (To be released) |
 | 03multireso        | Multi resolution CM in the paper [The PartialSpoof Database and Countermeasures for the Detection of Short Fake Speech Segments Embedded in an Utterance](https://ieeexplore.ieee.org/document/10003971) |
+| metric | metric used for spoof (utterance-level) detection and (segment-level) localization [Range-Based Equal Error Rate for Spoof Localization](https://arxiv.org/abs/2305.17739) (To be released) |
 
 
 
