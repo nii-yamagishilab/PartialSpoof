@@ -1,1 +1,1 @@
-../../model.py
+../model.py

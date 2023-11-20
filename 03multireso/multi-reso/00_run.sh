@@ -11,7 +11,7 @@ fi
 if [ $stage -le 0 ]; then
     ssl_link="https://dl.fbaipublicfiles.com/fairseq/wav2vec/w2v_large_lv_fsh_swbd_cv.pt"
     if [ ! -f ../../modules/ssl_pretrain/w2v_large_lv_fsh_swbd_cv.pt  ]; then
-        wget -q --show-progress -c ${link} -O ../../modules/ssl_pretrain
+        wget -q --show-progress -c ${ssl_link} -O ../../modules/ssl_pretrain
     fi
 fi
 

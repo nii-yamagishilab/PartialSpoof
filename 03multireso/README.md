@@ -83,7 +83,7 @@ Please cite database and this paper if you use:
 3. Run `bash run.sh`, which including training and inference.
 
    ```shell
-   $ bash 00_run.sh
+   $ bash 00_run.sh <stage>
    ```
 
    `00_run.sh` includes three stages:

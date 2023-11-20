@@ -8,6 +8,9 @@ metric
 03multireso/multi-reso/output/
 database
 
+#slurm
+slurm-*.out
+
 # Project
 *.dic
 *.pkl
