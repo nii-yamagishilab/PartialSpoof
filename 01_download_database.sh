@@ -1,6 +1,6 @@
 #!/bin/bash
 	
-FILE_NAMEs=(train dev eval segment_labels_v1.2 protocols)
+FILE_NAMEs="train dev eval segment_labels_v1.2 protocols"
 
 
 

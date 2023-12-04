@@ -1,6 +1,10 @@
 '''
     implement multi-reso CM
+
 '''
+__author__ = "Lin Zhang"
+__email__ = "zhanglin@nii.ac.jp"
+__copyright__ = "Copyright 2023, Lin Zhang"
 
 import math
 import torch

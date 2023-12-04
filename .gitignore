@@ -1,3 +1,20 @@
+#in preparing
+00data-prepare
+01singletask
+02multitask
+metric
+
+# debug with pretrained models:
+03multireso/multi-reso/01
+03multireso/single-reso/64/01
+job.sh
+.DS_Store
+
+#database
+database
+
+#slurm
+slurm-*.out
 
 # Project
 *.dic
@@ -5,12 +22,10 @@
 *.pt
 *.npy
 *.wav
-
-# Generated file
-03multireso/multi-reso/output/
-
-database/**/con_wav/
-database/segment_labels/
+.nfs*
+# Generated files
+*exp*
+*output*
 
 
 #https://github.com/github/gitignore/blob/main/Python.gitignore
