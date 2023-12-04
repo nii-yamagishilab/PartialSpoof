@@ -4,8 +4,12 @@
 02multitask
 metric
 
-# Generated file
-03multireso/multi-reso/output/
+# debug with pretrained models:
+03multireso/multi-reso/01
+03multireso/single-reso/64/01
+job.sh
+
+#database
 database
 
 #slurm
@@ -18,8 +22,9 @@ slurm-*.out
 *.npy
 *.wav
 .nfs*
+# Generated files
 *exp*
-
+*output*
 
 #https://github.com/github/gitignore/blob/main/Python.gitignore
 # Byte-compiled / optimized / DLL files

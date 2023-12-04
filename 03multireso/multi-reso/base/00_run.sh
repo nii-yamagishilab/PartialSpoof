@@ -1,7 +1,7 @@
 #!/bin/bash
 
 stage=$1
-CON_PATH=../../database
+CON_PATH=../../../database
 OUTPUT_DIR=output
 if [ ! -d ${OUTPUT_DIR}  ]; then
     mkdir ${OUTPUT_DIR}

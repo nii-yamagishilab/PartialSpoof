@@ -24,8 +24,8 @@ val_set_name = 'PS_dev'
 
 # for convenience
 
-#CON_DATA_PATH = '/home/smg/zhanglin/workspace/PROJ/Public/PartialSpoof/database/'
-CON_DATA_PATH = '/path/to/data'
+CON_DATA_PATH = '/home/smg/zhanglin/workspace/PROJ/Public/PartialSpoof/database/'
+#CON_DATA_PATH = '/path/to/data'
 
 # File lists (text file, one data name per line, without name extension)
 # trin_file_list: list of files for training set
