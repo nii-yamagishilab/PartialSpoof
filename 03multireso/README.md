@@ -24,7 +24,7 @@ Please cite database and this paper if you use:
 ## Prepare
 
 * Environment
-  SSL model used in this project is based on s3prl. Please following [s3rpl#installation](https://github.com/s3prl/s3prl#installation) to build the enviorment. Here are two ways for downloading:
+  SSL model used in this project is based on s3prl. Please following [s3rpl#installation](https://github.com/s3prl/s3prl/tree/7ab62aaf2606d83da6c71ee74e7d16e0979edbc3#installation) to build the enviorment. Here are two ways for downloading:
   
   * Option 1. If you have downloaded s3prl, Please link it to `modules/s3prl`
   
@@ -45,26 +45,28 @@ Please cite database and this paper if you use:
 
   Please download database from zenodo if you don't have:
 
-  `bash 01_download_database.sh`
-
-
+  ```shell
+  #cd to PartialSpoof
+  bash 01_download_database.sh
+  ```
 
 * Pre-trained models 
 
   If you want to use the pretrained model, please download them by:
 
-  `bash 01_download_model.sh 1 `
-
-
+  ```bash
+  #cd to 03multireso
+  bash 01_download_model.sh
+  ```
+  
+  
 
 ## Usuage
 
 1. env
    * modify the `CON_DATA_PATH` in the line 27 of config\*py to your path.
    
-     ```
-     sed -i config_ps/config*py 's/\/path\/to\/data/<Your_path>/g'
-     ```
+     >CON_DATA_PATH = '/path/to/data'
    
      
    

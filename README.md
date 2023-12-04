@@ -1,16 +1,27 @@
 <img src="Figures/PartialSpoof_logo.png" alt="PartialSpoof_logo" style="zoom:22%;" />
 
+This is the implementation of papers for Partial Spoof. And this repo is adapted from [project-NN-Pytorch-scripts](https://github.com/nii-yamagishilab/project-NN-Pytorch-scripts). 
+
+Please feel free to give suggestions and feedback. : )
+
+Lin Zhang; Xin Wang; Erica Cooper; Nicholas Evans; Junichi Yamagishi
+
+
+
 # Outline
 
+0. [Updation](#update)
 1. [General Information](#general)
 2. [Folder and Its Paper](#folderintro)
 3. [Folder Structure](#folderstructure)
 4. [Citation](#citation)
 5. [Acknowledgments and License](#ack)
 
+# <a name="update"/> 0. Updation
+* 2023-12: add metrics (EER and RangeEER) for localization (segment-level detection).
+* 2022-12: release multi-reso. and single-reso CMs.
 
-
-# 1. PartialSpoof 
+# <a name="general"/> 1. PartialSpoof 
 
 Welcome to the story of PartialSpoof! Here are some links you might interested:
 
@@ -23,12 +34,6 @@ Papers: Please refer to the link in [Folder and its paper](#folderintro)
 
 
 
-
-This is the implementation of papers for Partial Spoof. And this repo is adapted from [project-NN-Pytorch-scripts](https://github.com/nii-yamagishilab/project-NN-Pytorch-scripts). 
-
-Please feel free to give suggestions and feedback. :)
-
-Lin Zhang; Xin Wang; Erica Cooper; Nicholas Evans; Junichi Yamagishi
 
 
 
