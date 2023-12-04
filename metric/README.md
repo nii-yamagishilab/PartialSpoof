@@ -30,6 +30,15 @@ pip install pyannote.database
 
 
 
+Env:
+
+```shell
+cd PartialSpoof
+source ./env.sh
+```
+
+
+
 ## Usage
 
 ```shell
