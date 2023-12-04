@@ -8,6 +8,7 @@ metric
 03multireso/multi-reso/01
 03multireso/single-reso/64/01
 job.sh
+.DS_Store
 
 #database
 database
@@ -25,6 +26,7 @@ slurm-*.out
 # Generated files
 *exp*
 *output*
+
 
 #https://github.com/github/gitignore/blob/main/Python.gitignore
 # Byte-compiled / optimized / DLL files
