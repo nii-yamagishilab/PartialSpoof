@@ -1,3 +1,0 @@
-[submodule "metric/pyannote-metrics"]
-	path = metric/pyannote-metrics
-	url = https://github.com/pyannote/pyannote-metrics.git
