@@ -56,7 +56,7 @@ Please cite database and this paper if you use:
 
   ```bash
   #cd to 03multireso
-  bash 01_download_model.sh
+  bash 01_download_pretrained_models.sh
   ```
   
   
