@@ -137,11 +137,7 @@ Regardless of the method chosen, the process of running an experiment with a sin
 3. Run `bash run.sh`, which including training and inference.
 
    ```shell
-<<<<<<< HEAD
    $ bash 00_run.sh <stage>
-=======
-   $ bash 00_run.sh 0
->>>>>>> 52fe148b3007c6999be9bdbfa20ba2f7a1bf73a2
    ```
 
    `00_run.sh` includes three stages:
