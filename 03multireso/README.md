@@ -286,16 +286,18 @@ The `_date` suffix in each file name represents the date the file was created, f
 
 ## Evaluate Performance
 
-Please go to find more information.
+Please go to `PartialSpoof/metric` to find more information.
 
-We will measuring performance based on .
+We will measuring performance based on predicted files: `output/log_output_*` and `output/*_score_ali_*.pkl`.
+
+
 
 
 
 ## Reference Repositories
 
-* [project-NN-Pytorch-scripts](https://github.com/nii-yamagishilab/project-NN-Pytorch-scripts)
-* [s3prl](https://github.com/s3prl/s3prl)
+* [project-NN-Pytorch-scripts](https://github.com/nii-yamagishilab/project-NN-Pytorch-scripts/tree/b91de2259bbcf095cadfe83a9a2e2e7129eec523)
+* [s3prl](https://github.com/s3prl/s3prl/tree/7ab62aaf2606d83da6c71ee74e7d16e0979edbc3)
 * [gmlp](https://github.com/labmlai/annotated_deep_learning_paper_implementations/blob/aacd926dba97ba7a1d67a3631120c46d0670ba94/labml_nn/transformers/gmlp/__init__.py)
 
 
