@@ -2,7 +2,6 @@
 00data-prepare
 01singletask
 02multitask
-metric
 
 # debug with pretrained models:
 03multireso/multi-reso/01
