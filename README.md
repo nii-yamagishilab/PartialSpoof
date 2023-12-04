@@ -19,7 +19,12 @@ Lin Zhang; Xin Wang; Erica Cooper; Nicholas Evans; Junichi Yamagishi
 
 # <a name="update"/> 0. Updation
 * 2023-12: add metrics (EER and RangeEER) for localization (segment-level detection).
+* 2023-12: add folders for multiple random seeds, and update readme.
 * 2022-12: release multi-reso. and single-reso CMs.
+
+
+
+
 
 # <a name="general"/> 1. PartialSpoof 
 
