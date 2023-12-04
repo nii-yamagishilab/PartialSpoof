@@ -69,12 +69,10 @@ Please cite database and this paper if you use:
 
   * Since there are three pretrained models with different random seeds. Thus you will see three folders (`01`, `02`, `03`) after uncompress:
 
-    >./multi-reso/{01, 02, 03}
-    >└── trained_network.pt
+    >./multi-reso/{01, 02, 03}/trained_network.pt
     >
-    >./single-reso/{2,4,8,16,32,64,utt}/{01,02,03}
-    >└── trained_network.pt
-
+    >./single-reso/{2,4,8,16,32,64,utt}/{01,02,03}/trained_network.pt
+    
     
 
 
@@ -201,13 +199,7 @@ Regardless of the method chosen, the process of running an experiment with a sin
 
 ### Notes
 
-`multi-reso` and `single-reso` are almost the same, their differences are
-
-1. option `--multi-scale-active [resolution] `  in the 00_run.sh. 
-
-2. folder path in the model.py
-
-    
+`multi-reso` and `single-reso` are almost the same, the only difference is the option `--multi-scale-active [resolution] `  in the 00_run.sh. 
 
 For example, for the option `multi-scale-active`:
 
@@ -234,11 +226,9 @@ bash 01_download_pretrained_models.sh
 
 * Since there are three pretrained models with different random seeds. Thus you will see three folders (`01`, `02`, `03`) after uncompress:
 
-  >./multi-reso/{01, 02, 03}
-  >└── trained_network.pt
+  >./multi-reso/{01, 02, 03}/trained_network.pt
   >
-  >./single-reso/{2,4,8,16,32,64,utt}/{01,02,03}
-  >└── trained_network.pt
+  >./single-reso/{2,4,8,16,32,64,utt}/{01,02,03}/trained_network.pt
 
   
 
