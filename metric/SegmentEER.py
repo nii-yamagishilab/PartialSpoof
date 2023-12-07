@@ -1,4 +1,3 @@
-
 #!/usr/bin/env python
 
 # Copyright 2023 National Institute of Informatics (author: Lin Zhang, zhanglin@nii.ac.jp)
@@ -45,30 +44,31 @@ np.set_printoptions(linewidth=100000)
 parser = argparse.ArgumentParser(add_help=False)
 parser.add_argument('--model_dir',type=str, default='PartialSpoof/03multireso/multi-reso')
 parser.add_argument('--sml_dir_list',type=str, nargs='+', default=['exp-01', 'exp-02', 'exp-03'], 
-        help="this is for sml_dir with different random seeds. But you can set this as . if the model_dir is the only experiment dir")
+        help="""List of sml_dirs for experiments with different random seeds. 
+        Set as '.' if model_dir is the sole experiment directory.""")
 parser.add_argument('--save_dir',type=str, default='Loc_SegmentEER/singlereso/64')
-parser.add_argument('--rttm_file',type=str, default='../../../database/dev/con_data/rttm_2cls_0sil')
+parser.add_argument('--ref_rttm',type=str, default='../../../database/dev/con_data/rttm_2cls_0sil')
 parser.add_argument('--reco2dur_file',type=str, default='../../../database/dev/con_data/reco2dur')
-parser.add_argument('--keyword',type=str, default='2023', 
-        help="""specify the keyword in the score_ali pkl, for example, you can set this to evaluate files with specific date.
-        or you can set this for score_ali pkl file with specific scoring branch. """)
+parser.add_argument('--keyword',type=str, default='', 
+        help="Keyword for filtering score_ali pkl files, e.g., for specific dates (2021) or scoring branches (_2_).") 
 
 parser.add_argument('--use_ext_flag', action='store_true', default=False, 
-        help="load existing results directly or re-calculate it")
+        help="Load existing results directly instead of recalculating.")
 parser.add_argument('--print_each', action='store_true', default=True, 
-        help="whether print each EER for all random seeds.") 
+        help="Print individual EER for each random seed.")
 parser.add_argument('--print_var',action='store_true', default=False, 
-        help="print the variance of EER with different random seeds") 
+        help="Display the variance of EER across different random seeds.")
 
 # set options for the EER matrix. 
+# Sec. 4.3 of http://arxiv.org/pdf/2305.17739.pdf 
 parser.add_argument('--DIGEER',action='store_true', default=True, 
-        help="Whether calculate EER using the (diagnal of EER matrix) ")
+        help="Calculate the diagonal of the EER matrix. (Measuring perforamnce in the same resolution used during training.) ")
 parser.add_argument('--UpEER',action='store_true', default=True, 
-        help="Whether downsample the predicted score to coarse-grained reso., (EERs in the upper triangle.)")
+        help="Calculate the upper triangle of the EER matrix. (Downsample predicted scores to coarse-grained resolution to measure.)")
 parser.add_argument('--LowEER',action='store_true', default=True, 
-        help="Whether upsample the predicted score to fine-grained reso., (EERs in the lower triangle.)")
+        help="Calculate the lower triangle of the EER matrix. (Upsample predicted scores to fine-grained resolution to measure.)")
 parser.add_argument('--UTTEER',action='store_true', default=True, 
-        help="whether calculate EER for utterance-level spoof detection by using segment-level scores. will shown in the last column.")
+        help="Calculate EER for utterance-level spoof detection using segment-level scores (displayed in the last column).")
 args = parser.parse_args()
 
 
@@ -78,8 +78,7 @@ Base_step=0.01 #base in sec
 Pred_Frame_shifts= np.array([pow(2, i) for i in np.arange(Scale_num)])[SSL_shift:] #Use which score branches to derive predicted scores? 
 Measure_Frame_shifts= np.array([pow(2, i) for i in np.arange(Scale_num)])[:] #Measure perfomrance on which reso.?
 
-
-rttm= get_rttm(args.rttm_file)
+rttm= get_rttm(args.ref_rttm)
 reco2dur=dict([line.split() for line in open(args.reco2dur_file)])
 label2num_file = "../../../database/label2num/label2num_2cls_0sil"
 LAB2NUM=dict([ [line.split()[0], float(line.split()[1])] for line in open(label2num_file) ])

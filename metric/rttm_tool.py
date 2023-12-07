@@ -1,17 +1,19 @@
+#!/usr/bin/env python
+
+# Copyright 2023 National Institute of Informatics (author: Lin Zhang, zhanglin@nii.ac.jp)
+# Licensed under the BSD 3-Clause License.
+
 import os
 import sys
 import numpy as np
 import argparse
 
 from collections import defaultdict
-"""
-zlin
-"""
 
 
 #Argument Parser
 #   label2num_file="data/label/label2num_all"
-default_label2num="/home/smg/zhanglin/workspace/PROJ/01spf-con/00data-prepare/exp-2d-sametol-label/label2num_all"
+default_label2num="PartialSpoof/label2num/label2num_all"
 
 
 

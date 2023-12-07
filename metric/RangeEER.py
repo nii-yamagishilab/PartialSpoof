@@ -1,5 +1,17 @@
 #!/usr/bin/env python
 
+# Copyright 2023 National Institute of Informatics (author: Lin Zhang, zhanglin@nii.ac.jp)
+# Licensed under the BSD 3-Clause License.
+
+"""
+Calculating Range-based EER for spoof localization. 
+
+Lin Zhang, Xin Wang, Erica Cooper, Nicholas Evans, Junichi Yamagishi (2023) 
+Range-Based Equal Error Rate for Spoof Localization. Proc. INTERSPEECH 2023, 3212-3216, 
+https://www.isca-speech.org/archive/interspeech_2023/zhang23v_interspeech.html
+
+"""
+
 import os
 import sys
 import argparse
@@ -17,33 +29,30 @@ from scipy.stats import percentileofscore
 
 import rle
 
-"""
-Zhang, L., Wang, X., Cooper, E., Evans, N., Yamagishi, J. (2023) 
-Range-Based Equal Error Rate for Spoof Localization. Proc. INTERSPEECH 2023, 3212-3216, 
-https://www.isca-speech.org/archive/interspeech_2023/zhang23v_interspeech.html
---
-Range-based EER:
-    1. load pandas
-    2. set class based on score
-    3. scoali2seg : [0,0,1,1,0,...] -> annotation
-    4. pyannote,
-"""
+
 
 parser = argparse.ArgumentParser(add_help=False)
-parser.add_argument('--ref_rttm',type=str, help='reference')
-parser.add_argument('--hyp_sco_ali',type=str, help='predicted score ali pkl file')
-parser.add_argument('--hyp_rttm',type=str, help='predicted score in rttm')
-parser.add_argument('-u', '--uem',type=str, default='')
-parser.add_argument('--reco2dur',type=str, default='')
-parser.add_argument('--scale',type=float, default=20)
-parser.add_argument('--th_left_per',type=float, default=0)
-parser.add_argument('--th_right_per',type=float, default=100)
-parser.add_argument('--th_left',type=float)
-parser.add_argument('--th_right',type=float)
+parser.add_argument('--hyp_sco_ali',type=str, 
+    help="Path to the predicted score alignment pkl (*_score_ali_*) file.")
+parser.add_argument('--hyp_rttm',type=str, 
+    help="Path to the predicted score file in RTTM format. Use this or the sco_ali file for performance measurement.")
+parser.add_argument('--ref_rttm',type=str, default='../../../database/dev/con_data/rttm_2cls_0sil',
+    help="Path to the ground-truth timestamp annotations file in the rttm format.")
+parser.add_argument('--save_dir',type=str, default='Loc_RangeEER/singlereso_64',
+    help="Directory for saving calculated SegmentEER results.")
+parser.add_argument('-u', '--uem',type=str, default='', help="Path to the Un-partitioned Evaluation Map (UEM) file.")
+parser.add_argument('--reco2dur_file',type=str, default='../../../database/dev/con_data/reco2dur',
+    help="Path to the recording duration file.")
+parser.add_argument('--scale',type=float, default=2, help="Resolution of the predicted scores.")
+
+# Binary search algorithm for calculating range-based EER
+parser.add_argument('--th_left_per',type=float, default=0, help = "Lower percentile for threshold quantile.")
+parser.add_argument('--th_right_per',type=float, default=100, help= "Upper percentile for threshold quantile.")
+parser.add_argument('--th_left',type=float, help="Lower threshold in value.")
+parser.add_argument('--th_right',type=float, help="Upper threshold in value.")
 parser.add_argument('--prec',type=float, default=0.00001, 
-        help = "stop condition, when far-mdr < prec, we stop searching.")
-parser.add_argument('--save_dir',type=str, default='RangeEER')
-#parser.add_argument('--estimate_type',type=str, default='center', choices=['num', 'center', 'step'])
+    help = """Precision threshold for stopping the search. 
+    The process stops when the difference between FNR and FPR is less than this value.""")
 parser.add_argument('--metric_base',type=str, default='spoof', choices=['bonafide', 'spoof'])
 args = parser.parse_args()
 
@@ -62,7 +71,7 @@ if(args.uem):
     uem_all =np.array([line.split() for line in open(args.uem)])
 
 ref_rttm = load_rttm(args.ref_rttm)
-reco2dur = dict([line.split() for line in open(args.reco2dur)])
+reco2dur = dict([line.split() for line in open(args.reco2dur_file)])
 LAB2NUM={'genune':1.0, 'spoof':0.0} #float
 def _compute_rate(num, denom):
     if denom == 0.0:
