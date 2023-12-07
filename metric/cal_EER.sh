@@ -24,7 +24,7 @@ if [[ ${METRIC} == "RangeEER"  ]]; then
     	mkdir -p ${RES_DIR}
     fi
 
-    python -u ${PS_PATH}/metric/RangeEER.py \
+    python -m pdb ${PS_PATH}/metric/RangeEER.py \
         --ref_rttm ${PS_PATH}/database/${dset}/con_data/rttm_2cls_0sil_spoof \
         --hyp_sco_ali ${pred_DIR}/output/${dset}_score_ali_${SCALE}_*.pkl \
         --reco2dur ${PS_PATH}/database/${dset}/con_data/reco2dur \
