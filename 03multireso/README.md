@@ -39,7 +39,7 @@ Please cite database and this paper if you use:
 
   If you want to use the pretrained model, please download them by:
 
-  `bash 01_download_model.sh`
+  `bash 01_download_pretrained_models.sh`
 
 
 
@@ -57,10 +57,10 @@ Please cite database and this paper if you use:
    * active path
    
      ```shell
-     $ cd 03multireso
-     $ conda activate ssl
+     $ cd PartialSpoof
      $ source ./env.sh
-     $ cd multi-reso #cd one folder
+     $ conda activate ssl
+     $ cd 03multireso/multi-reso #cd one folder
      ```
    
 
