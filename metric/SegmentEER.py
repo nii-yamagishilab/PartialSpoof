@@ -22,7 +22,7 @@ Downsample: extend this to get finer prediction from coaser one. like upsample 2
 
 Requires model_dir and args.save_dir
 
-Usage: $: python SegmentEER.py --model_dir <model_dir> --save_dir <save_dir> --sml_dir . 
+Usage: $: python SegmentEER.py --model_dir <model_dir> --save_dir <save_dir> --sub_dir . 
 """
 
 import os
@@ -41,33 +41,43 @@ from collections import defaultdict
 from rttm_tool import get_rttm, get_vadvec, rttm2vadvec
 np.set_printoptions(linewidth=100000)
 
+def str2bool(value):
+    """A function to convert string to bool value."""
+    if value.lower() in {'True', 'yes', 'true', 't', 'y', '1'}:
+        return True
+    if value.lower() in {'False', 'no', 'false', 'f', 'n', '0'}:
+        return False
+    raise argparse.ArgumentTypeError('Boolean value expected.')
+
 parser = argparse.ArgumentParser(add_help=False)
 parser.add_argument('--model_dir',type=str, default='PartialSpoof/03multireso/multi-reso')
-parser.add_argument('--sml_dir_list',type=str, nargs='+', default=['exp-01', 'exp-02', 'exp-03'], 
-        help="""List of sml_dirs for experiments with different random seeds. 
+parser.add_argument('--dset',type=str, default='dev', help="To read score_ali start from $dset.")
+parser.add_argument('--sub_dir_list',type=str, nargs='+', default=['exp-01', 'exp-02', 'exp-03'], 
+        help="""List of sub_dirs for experiments with different random seeds. 
         Set as '.' if model_dir is the sole experiment directory.""")
 parser.add_argument('--save_dir',type=str, default='Loc_SegmentEER/singlereso/64')
 parser.add_argument('--ref_rttm',type=str, default='../../../database/dev/con_data/rttm_2cls_0sil')
 parser.add_argument('--reco2dur_file',type=str, default='../../../database/dev/con_data/reco2dur')
+parser.add_argument('--label2num_file',type=str, default='../../../database/label2num/label2num_2cls_0sil')
 parser.add_argument('--keyword',type=str, default='', 
         help="Keyword for filtering score_ali pkl files, e.g., for specific dates (2021) or scoring branches (_2_).") 
 
-parser.add_argument('--use_ext_flag', action='store_true', default=False, 
+parser.add_argument('--use_ext_flag', type=str2bool, default=False, 
         help="Load existing results directly instead of recalculating.")
-parser.add_argument('--print_each', action='store_true', default=True, 
+parser.add_argument('--print_each', type=str2bool, default=True, 
         help="Print individual EER for each random seed.")
-parser.add_argument('--print_var',action='store_true', default=False, 
+parser.add_argument('--print_var',type=str2bool, default=False, 
         help="Display the variance of EER across different random seeds.")
 
 # set options for the EER matrix. 
 # Sec. 4.3 of http://arxiv.org/pdf/2305.17739.pdf 
-parser.add_argument('--DIGEER',action='store_true', default=True, 
+parser.add_argument('--DIGEER',type=str2bool, default=True, 
         help="Calculate the diagonal of the EER matrix. (Measuring perforamnce in the same resolution used during training.) ")
-parser.add_argument('--UpEER',action='store_true', default=True, 
+parser.add_argument('--UpEER',type=str2bool, default=True, 
         help="Calculate the upper triangle of the EER matrix. (Downsample predicted scores to coarse-grained resolution to measure.)")
-parser.add_argument('--LowEER',action='store_true', default=True, 
+parser.add_argument('--LowEER',type=str2bool, default=True, 
         help="Calculate the lower triangle of the EER matrix. (Upsample predicted scores to fine-grained resolution to measure.)")
-parser.add_argument('--UTTEER',action='store_true', default=True, 
+parser.add_argument('--UTTEER',type=str2bool, default=True, 
         help="Calculate EER for utterance-level spoof detection using segment-level scores (displayed in the last column).")
 args = parser.parse_args()
 
@@ -75,15 +85,13 @@ args = parser.parse_args()
 Scale_num=7   
 SSL_shift=1   ##since SSL use 20ms as frame shift...
 Base_step=0.01 #base in sec
-Pred_Frame_shifts= np.array([pow(2, i) for i in np.arange(Scale_num)])[SSL_shift:] #Use which score branches to derive predicted scores? 
-Measure_Frame_shifts= np.array([pow(2, i) for i in np.arange(Scale_num)])[:] #Measure perfomrance on which reso.?
+Pred_Resolutions= np.array([pow(2, i) for i in np.arange(Scale_num)])[SSL_shift:] #Use which score branches to derive predicted scores? 
+Measure_Resolutions= np.array([pow(2, i) for i in np.arange(Scale_num)])[:] #Measure perfomrance on which reso.? 
+                                                                            #default: 10 20 40 80 160 640
 
 rttm= get_rttm(args.ref_rttm)
 reco2dur=dict([line.split() for line in open(args.reco2dur_file)])
-label2num_file = "../../../database/label2num/label2num_2cls_0sil"
-LAB2NUM=dict([ [line.split()[0], float(line.split()[1])] for line in open(label2num_file) ])
-
-DSETs=['dev', 'eval']
+LAB2NUM=dict([ [line.split()[0], float(line.split()[1])] for line in open(args.label2num_file) ])
 
 
 assert(args.DIGEER + args.UpEER + args.LowEER >0)
@@ -160,7 +168,7 @@ def get_dupary_by_scale(sco_lab_pd, scale, to_scale, scale_change_time=0):
 
     #2. get new fround-truth based on the new scale.
     gt_lab = rttm2vadvec(rttm[uttid], to_scale * Base_step, reco2dur[uttid], skip_last=False, 
-        label2num_file=label2num_file)
+        label2num_file=args.label2num_file)
     lab_num = min(len(new_pd), len(gt_lab))
     del_num = max(len(new_pd), len(gt_lab)) - lab_num
     pad = [nan for i in np.arange(del_num)] if (len(new_pd)>len(gt_lab)) else []
@@ -179,7 +187,7 @@ def get_duppd_by_scale(sco_lab_pd, scale, to_scale, scale_change_time=0):
 
     #2. get new fround-truth based on the new scale.
     gt_lab = rttm2vadvec(rttm[uttid], to_scale * Base_step, reco2dur[uttid], skip_last=False, 
-        label2num_file=label2num_file)
+        label2num_file=args.label2num_file)
     lab_num = min(len(new_pd), len(gt_lab))
     del_num = max(len(new_pd), len(gt_lab)) - lab_num
     pad = [nan for i in np.arange(del_num)] if (len(new_pd)>len(gt_lab)) else []
@@ -197,11 +205,11 @@ def get_eermatrix_scale(sco_lab_pd, scale):
     And note that upper triangle may be an “underestimation”, while lower triangle is more correct. 
     """
 
-    eers=np.zeros(len(Measure_Frame_shifts)) #* np.inf
-    thresholds=np.zeros(len(Measure_Frame_shifts)) #* np.inf
+    eers=np.zeros(len(Measure_Resolutions)) #* np.inf
+    thresholds=np.zeros(len(Measure_Resolutions)) #* np.inf
 
-    index = Measure_Frame_shifts.tolist().index(scale)
-    measure_scale = np.arange(index, len(Measure_Frame_shifts))
+    index = Measure_Resolutions.tolist().index(scale)
+    measure_scale = np.arange(index, len(Measure_Resolutions))
     if(args.LowEER):
         measure_scale = np.arange(Scale_num)
         
@@ -215,7 +223,7 @@ def get_eermatrix_scale(sco_lab_pd, scale):
                 utteer_pd.rename( columns={0:'EER'}, inplace=True  )
         elif(idx > index and args.UpEER): 
             #if we want to calculate eer in the upper diag.
-            fs = int(Measure_Frame_shifts[idx] / scale) 
+            fs = int(Measure_Resolutions[idx] / scale) 
             #we need to divide scale, since the further eer calculation is based on frame shift on basic scale.
             # any function passed to apply is applied along each column/series independent
 
@@ -225,7 +233,7 @@ def get_eermatrix_scale(sco_lab_pd, scale):
             new_pd = sco_lab_pd.groupby('Wavid').apply(get_pd_in_scoretype, fs = fs)  
 
         elif(idx < index and args.LowEER):
-            new_pd = sco_lab_pd.groupby('Wavid').apply(get_duppd_by_scale, scale, to_scale = Measure_Frame_shifts[idx]) 
+            new_pd = sco_lab_pd.groupby('Wavid').apply(get_duppd_by_scale, scale, to_scale = Measure_Resolutions[idx]) 
         else:
             continue
 
@@ -267,8 +275,6 @@ def get_mean_multi_seed(eer_scales_seed, threshold_scales_seed, return_var=False
 
     return np.mean(eer_scales_seed,axis = 0), np.mean(threshold_scales_seed,axis=0), None, None
 
-#3. eer
-
 
 def print_res(res_data):
     """
@@ -297,76 +303,75 @@ def main():
     threshold_scales_seed = []
     utteer_scales_seed = []
 
-    for dset in DSETs:
-        eer_file='{}/SegmentEER_{}'.format(args.save_dir, dset)
+    eer_file='{}.npz'.format(args.save_dir)
 
-        if(os.path.exists(eer_file+'.npz') and (args.use_ext_flag)):
-            # load pre-calculated EER matrix
-            res_data = np.load(eer_file+".npz", allow_pickle=True)
+    if(os.path.exists(eer_file) and (args.use_ext_flag)):
+        # load pre-calculated EER matrix
+        res_data = np.load(eer_file, allow_pickle=True)
 
-            print("="*10,"{} with {} seeds".format(
-                dset, len(res_data['eers_scales_seed'])),"="*10)
-            print_res(res_data)
+        print("="*10,"{} seed".format(len(res_data['eers_scales_seed'])),"="*10)
+        print_res(res_data)
 
-        else:
-            for sml_name in args.sml_dir_list: 
-                #read all models (especially with different seeds) within this dir.
-                sml_dir = os.path.join(args.model_dir, sml_name)   
+    else:
+        for sml_name in args.sub_dir_list: 
+            #read all models (especially with different seeds) within this dir.
+            sub_dir = os.path.join(args.model_dir, sml_name)   
+            model_out_dir=os.path.join(args.model_dir, sub_dir, 'output')
 
-                eer_scales=[]
-                threshold_scales=[]
-                utteer_scales = {}
+            eer_scales=[]
+            threshold_scales=[]
+            utteer_scales = {}
 
-                model_out_dir=os.path.join(args.model_dir, sml_dir,'output')
-                if(os.path.exists(model_out_dir)):
-                    #to judge wether we have aligned score .pkl file.
-                    #and this is not temperate folder.
-                    find_it=False
-                    while(True):
-                        #to find the time_tag based on the ali.npz.
-                        for score_name in os.listdir(model_out_dir):
-                            name, app = os.path.splitext(score_name)
-                            if ( name.find(args.keyword)>=0 and name.find(f'{dset}_score_ali')>=0  and app == '.pkl'):
-                                find_it=True; break
-                        if(find_it): break;
-                        print("Can not find score_ali file, please check " + model_out_dir)
-                        sys.exit()
-                    time_tag=name.split('_')[-1]
+            if(os.path.exists(model_out_dir)):
+                #to judge wether we have aligned score .pkl file.
+                #and this is not temperate folder.
+                find_it=False
+                while(True):
+                    #to find the time_tag based on the ali.npz.
+                    for score_name in os.listdir(model_out_dir):
+                        name, app = os.path.splitext(score_name)
+                        if ( name.find(args.keyword)>=0 and name.find(f'{args.dset}_score_ali')>=0  and app == '.pkl'):
+                            find_it=True; break
+                    if(find_it): break;
+                    print("Can not find score_ali file, please check " + model_out_dir)
+                    sys.exit()
+                time_tag=name.split('_')[-1]
 
-                    for scale in np.flip(Pred_Frame_shifts):
-                    #Iterate all score branches listed in Pred_Frame_shifts
-                        sco_ali_file=os.path.join(model_out_dir,
-                                '{}_score_ali_{}_{}.pkl'.format(dset, scale,time_tag))
-                        sco_lab_pd = load_scolab(sco_ali_file)
+                for scale in np.flip(Pred_Resolutions):
+                #Iterate all score branches listed in Pred_Resolutions
+                    sco_ali_file=os.path.join(model_out_dir,
+                            '{}_score_ali_{}_{}.pkl'.format(args.dset, scale,time_tag))
+                    sco_lab_pd = load_scolab(sco_ali_file)
 
-                        #segment eer vector. Evaluate this score branch in all possible reso. eers's dim: [1, len(Measure_Frame_shifts)]
-                        eers, thresholds, utteer_pd = get_eermatrix_scale( sco_lab_pd, scale) 
+                    #segment eer vector. Evaluate this score branch in all possible reso. eers's dim: [1, len(Measure_Resolutions)]
+                    eers, thresholds, utteer_pd = get_eermatrix_scale( sco_lab_pd, scale) 
 
-                        #utterance eer from segments score
-                        eer_utt, threshold_utt = get_utteer_by_seg(sco_lab_pd)
+                    #utterance eer from segments score
+                    eer_utt, threshold_utt = get_utteer_by_seg(sco_lab_pd)
 
-                        #append eer(segment eer in x Scale_num; utterance eer)
-                        eer_scales.append(np.concatenate((eers, [eer_utt])))
-                        threshold_scales.append(np.concatenate((thresholds, [threshold_utt])))
-                        utteer_scales[f'{scale}']=utteer_pd
+                    #append eer(segment eer in x Scale_num; utterance eer)
+                    eer_scales.append(np.concatenate((eers, [eer_utt])))
+                    threshold_scales.append(np.concatenate((thresholds, [threshold_utt])))
+                    utteer_scales[f'{scale}']=utteer_pd
 
-                    # eer_scales[0].shape[0] or len(Measure_Frame_shifts) + 1, which represents dim as reso. + utterance (1) 
-                    eers_scales_seed.append(np.concatenate(eer_scales).reshape(-1, eer_scales[0].shape[0]))   
-                    threshold_scales_seed.append(np.concatenate(threshold_scales).reshape(-1, eer_scales[0].shape[0]))
-                    utteer_scales_seed.append(utteer_scales)
+                # eer_scales[0].shape[0] or len(Measure_Resolutions) + 1, which represents dim as reso. + utterance (1) 
+                eers_scales_seed.append(np.concatenate(eer_scales).reshape(-1, eer_scales[0].shape[0]))   
+                threshold_scales_seed.append(np.concatenate(threshold_scales).reshape(-1, eer_scales[0].shape[0]))
+                utteer_scales_seed.append(utteer_scales)
 
-            np.savez(eer_file, 
-                    eers_scales_seed = eers_scales_seed, threshold_scales_seed = threshold_scales_seed,
-                    utteer_scales_seed = utteer_scales_seed)
-            #final column is utterance eer from segments score.
+        np.savez(eer_file, 
+                eers_scales_seed = eers_scales_seed, threshold_scales_seed = threshold_scales_seed,
+                utteer_scales_seed = utteer_scales_seed)
+        #final column is utterance eer from segments score.
 
-            eers_scales_seed_mean, threshold_scales_seed_mean, _, _ = get_mean_multi_seed(
-                    eers_scales_seed, threshold_scales_seed)
-            print("="*10,"{} {}".format(args.model_out_dir, dset),"="*10)
-            print("eer:\n", eers_scales_seed_mean * 100)
-            #print("threshold:\n", threshold_scales_seed_mean)
+        eers_scales_seed_mean, threshold_scales_seed_mean, _, _ = get_mean_multi_seed(
+                eers_scales_seed, threshold_scales_seed)
+        print("="*10,"{} {}".format(args.save_dir, args.dset),"="*10)
+        print("eer:\n", eers_scales_seed_mean * 100)
+        #print("threshold:\n", threshold_scales_seed_mean)
             
     
 if __name__ == "__main__": 
     main()
+
 

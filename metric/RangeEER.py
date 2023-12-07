@@ -30,7 +30,6 @@ from scipy.stats import percentileofscore
 import rle
 
 
-
 parser = argparse.ArgumentParser(add_help=False)
 parser.add_argument('--hyp_sco_ali',type=str, 
     help="Path to the predicted score alignment pkl (*_score_ali_*) file.")
@@ -58,10 +57,7 @@ args = parser.parse_args()
 
 
 eer_res = []
-#if exist eer files:
-#init_path = args.save_dir.replace('biosec', 'center')+"/det_ary_center_20.0"
-# old_bisec: 
-# threshold far mdr abs(far-mdr)
+# threshold fpr fnr abs(fpr-fnr)
 
 if(not os.path.exists(args.save_dir)):
     os.makedirs(args.save_dir)
@@ -80,7 +76,7 @@ def _compute_rate(num, denom):
         return 1.0
     return num/denom
 
-def cal_eer_by_scolab(sco_lab_pd, return_far_mdr=False):
+def cal_eer_by_scolab(sco_lab_pd, return_fpr_fnr=False):
     """
     Normal form is for eer calculation on all data.
     utteer_flag = True for only one utterance's score.
@@ -93,15 +89,15 @@ def cal_eer_by_scolab(sco_lab_pd, return_far_mdr=False):
         gen=sco_lab_pd[sco_lab_pd.True_SpoofRatio==0.0].Predict_Score_1
         spf=sco_lab_pd[sco_lab_pd.True_SpoofRatio>0.0].Predict_Score_1
 
-    far, mdr, thresholds = eval_asvspoof.compute_det_curve(gen, spf)
+    fpr, fnr, thresholds = eval_asvspoof.compute_det_curve(gen, spf)
 
-    abs_diffs = np.abs(frr - far)
+    abs_diffs = np.abs(frr - fpr)
     min_index = np.argmin(abs_diffs)
 
-    if(return_far_mdr):
-        return frr[min_index], far[min_index], thresholds[min_index]
+    if(return_fpr_fnr):
+        return frr[min_index], fpr[min_index], thresholds[min_index]
     else:
-        eer = np.mean((frr[min_index], far[min_index]))
+        eer = np.mean((frr[min_index], fpr[min_index]))
         return eer, thresholds[min_index]
 
 
@@ -232,10 +228,10 @@ def get_detcos_by_th(sco_pd, th):
         hyp = scoali2seg(sco_lab_pd[sco_lab_pd['Uttid']==uttid], scale = args.scale*10.0)
 
         detcos_detail = detCos(reference=ref, hypothesis=hyp , uem=uem, detailed=True) 
-    far = _compute_rate(detCos.accumulated_['false alarm'], detCos.accumulated_['negative class total'] )
-    mdr = _compute_rate(detCos.accumulated_['miss'], detCos.accumulated_['positive class total'] )
+    fpr = _compute_rate(detCos.accumulated_['false alarm'], detCos.accumulated_['negative class total'] )
+    fnr = _compute_rate(detCos.accumulated_['miss'], detCos.accumulated_['positive class total'] )
 
-    return far, mdr
+    return fpr, fnr
 
 def initial(args, sco_pd):
     sco_all = np.sort(sco_pd.Predict_Score_1.tolist())    
@@ -277,7 +273,7 @@ def initial(args, sco_pd):
     return th_left, th_left_per, th_right, th_right_per, th_mid, th_mid_per
 
 def main():
-    eer_res=[] #List of [threshold, far, mdr, diff]
+    eer_res=[] #List of [threshold, fpr, fnr, diff]
     save_file = os.path.join(args.save_dir,"RangeEER_det")
 
     #2. set class based on score
@@ -298,31 +294,31 @@ def main():
     #1.2. set quantile for left, mid and right.
     th_left, th_left_per, th_right, th_right_per, th_mid, th_mid_per = initial(args, sco_pd)
 
-    #1.3 get init far and mdr from mid 
-    far_left, mdr_left = get_detcos_by_th(sco_pd, th_left)
-    far_mid, mdr_mid = get_detcos_by_th(sco_pd, th_mid)
-    eer_res.append([th_mid, far_mid, mdr_mid, abs(far_mid-mdr_mid)])
+    #1.3 get init fpr and fnr from mid 
+    fpr_left, fnr_left = get_detcos_by_th(sco_pd, th_left)
+    fpr_mid, fnr_mid = get_detcos_by_th(sco_pd, th_mid)
+    eer_res.append([th_mid, fpr_mid, fnr_mid, abs(fpr_mid-fnr_mid)])
 
     #2. bisect
-    #early_tag = True #we'd like to start with the point far < mdr.
-    while(th_left < th_right and abs(far_mid-mdr_mid) > args.prec ):
+    #early_tag = True #we'd like to start with the point fpr < fnr.
+    while(th_left < th_right and abs(fpr_mid-fnr_mid) > args.prec ):
 
-        if((far_left - mdr_left) * (far_mid - mdr_mid) < 0 ):
+        if((fpr_left - fnr_left) * (fpr_mid - fnr_mid) < 0 ):
             th_right, th_right_per = th_mid, th_mid_per
-            far_right, mdr_right = far_mid, mdr_mid
+            fpr_right, fnr_right = fpr_mid, fnr_mid
         else:
-            #if((far_right - mdr_right) * (far_right - mdr_right) < 0 ):
+            #if((fpr_right - fnr_right) * (fpr_right - fnr_right) < 0 ):
             th_left, th_left_per = th_mid, th_mid_per
-            far_left, mdr_left = far_mid, mdr_mid
+            fpr_left, fnr_left = fpr_mid, fnr_mid
 
         th_mid_per = (th_left_per + th_right_per)/2.0
         th_mid= np.percentile(sco_pd.Predict_Score_1, th_mid_per)
-        far_mid, mdr_mid = get_detcos_by_th(sco_pd, th_mid)
+        fpr_mid, fnr_mid = get_detcos_by_th(sco_pd, th_mid)
 
-        eer_res.append([th_mid, far_mid, mdr_mid, abs(far_mid-mdr_mid)])
+        eer_res.append([th_mid, fpr_mid, fnr_mid, abs(fpr_mid-fnr_mid)])
         with open(save_file, 'ab') as f:
-            np.savetxt( f, np.array([th_mid, far_mid, mdr_mid, abs(far_mid - mdr_mid)]).reshape(-1,4))
-        print(np.array([th_mid, far_mid, mdr_mid, abs(far_mid-mdr_mid)]).reshape(-1, 4))    
+            np.savetxt( f, np.array([th_mid, fpr_mid, fnr_mid, abs(fpr_mid - fnr_mid)]).reshape(-1,4))
+        print(np.array([th_mid, fpr_mid, fnr_mid, abs(fpr_mid-fnr_mid)]).reshape(-1, 4))    
 
     if(os.path.exists(save_file)):
         eer_ary = np.loadtxt(save_file).reshape(-1, 4)
@@ -333,3 +329,6 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+
+

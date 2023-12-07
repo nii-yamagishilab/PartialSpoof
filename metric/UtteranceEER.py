@@ -61,7 +61,7 @@ def parse_txt(file_path, col):
 
 if __name__ == "__main__":
 
-    trials=pd.read_csv(args.asv_score_file,error_bad_lines=False,
+    trials=pd.read_csv(args.asv_score_file, on_bad_lines='skip',
             sep='\s+',index_col =False, header=None,
             names=['type', 'label', 'score'])
     tar_asv = np.array(trials.loc[trials['label']=='target']['score'], dtype=float)

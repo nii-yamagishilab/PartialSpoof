@@ -2,15 +2,13 @@
 
 #Example to measure different types of EER
 
-#set -x
-PS_PATH=/home/smg/zhanglin/workspace/PROJ/Public/CODE/PartialSpoof
-
-pred_DIR=$1
-metric=$2 #UttEER, SegEER, RangeEER
-dset=$3
+pred_DIR=$1 	# predicted dir.
+metric=$2 	# UttEER, SegEER, RangeEER
+dset=$3 	# dev eval
 
 # for RangeEER
-SCALEs="2 4 8 16 32 64 utt"
+#SCALEs="2 4 8 16 32 64 utt"
+scale=$4	#Which score branch
 
 #############Utterance-level EER
 if [[ ${metric} == "UttEER"  ]]; then
@@ -23,13 +21,15 @@ fi
 
 #############Point-based Segment-level EER
 if [[ ${metric} == "SegEER"  ]]; then
-    RES_DIR=${pred_DIR}/Loc_SegEER/${dset}_${SCALE}
+    RES_DIR=${pred_DIR}/Loc_SegEER/${dset}
     
     python ${PS_PATH}/metric/SegmentEER.py \
-        --ref_rttm ${PS_PATH}/database/${dset}/con_data/rttm_2cls_0sil_spoof \
+        --ref_rttm ${PS_PATH}/database/${dset}/con_data/rttm_2cls_0sil \
         --model_dir ${pred_DIR} \
 	--sml_dir exp-01 exp-02 exp-03 \
+	--dset ${dset} \
         --reco2dur ${PS_PATH}/database/${dset}/con_data/reco2dur \
+	--label2num_file ${PS_PATH}/database/label2num/label2num_2cls_0sil \
         --save_dir ${RES_DIR} 
 
 fi
