@@ -38,7 +38,7 @@ parser.add_argument('--hyp_rttm',type=str,
 parser.add_argument('--ref_rttm',type=str, default='../../../database/dev/con_data/rttm_2cls_0sil',
     help="Path to the ground-truth timestamp annotations file in the rttm format.")
 parser.add_argument('--save_dir',type=str, default='Loc_RangeEER/singlereso_64',
-    help="Directory for saving calculated SegmentEER results.")
+    help="Directory for saving calculated results.")
 parser.add_argument('-u', '--uem',type=str, default='', help="Path to the Un-partitioned Evaluation Map (UEM) file.")
 parser.add_argument('--reco2dur_file',type=str, default='../../../database/dev/con_data/reco2dur',
     help="Path to the recording duration file.")
