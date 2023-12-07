@@ -92,13 +92,13 @@ Please cite database and this paper if you use:
      
 
    * active path
-
+   
      ```shell
-     $ cd 03multireso
-     $ conda activate ssl
+     $ cd PartialSpoof
      $ source ./env.sh
-     $ cd multi-reso #cd one folder
-     ```
+     $ conda activate ssl
+     $ cd 03multireso/multi-reso #cd one folder
+     `````
 
 2. To facilitate running experiments with different random seeds, a `base` folder has been created as the primary directory. To conduct experiments using multiple random seeds, please follow these instructions:
 
