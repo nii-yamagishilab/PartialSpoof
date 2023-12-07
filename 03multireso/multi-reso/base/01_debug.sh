@@ -1,7 +1,7 @@
 #!/bin/bash
 
 set -x
-CON_PATH=../../database
+CON_PATH=../../../database
 OUTPUT_DIR=output
 time_tag=`date +%Y%m%d`
 if [ ! -d ${OUTPUT_DIR}  ]; then

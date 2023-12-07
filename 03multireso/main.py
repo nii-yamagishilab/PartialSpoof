@@ -1,4 +1,9 @@
 #!/usr/bin/env python
+
+# Copyright 2021 National Institute of Informatics (author: Xin Wang, wangxin@nii.ac.jp)
+# Copyright 2023 National Institute of Informatics (author: Lin Zhang, zhanglin@nii.ac.jp)
+# Licensed under the BSD 3-Clause License.
+
 """
 main.py for project-NN-pytorch/projects
 
@@ -22,11 +27,6 @@ import core_scripts.config_parse.arg_parse as nii_arg_parse
 import core_scripts.op_manager.op_manager as nii_op_wrapper
 import core_scripts.nn_manager.nn_manager_zl as nii_nn_wrapper
 import core_scripts.startup_config as nii_startup
-
-__author__ = "Xin Wang"
-__email__ = "wangxin@nii.ac.jp"
-__copyright__ = "Copyright 2020, Xin Wang"
-
 
 def main():
     """ main(): the default wrapper for training and inference process

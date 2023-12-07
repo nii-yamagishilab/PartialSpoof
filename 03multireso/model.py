@@ -1,4 +1,9 @@
 #!/usr/bin/env python
+
+# Copyright 2021 National Institute of Informatics (author: Xin Wang, wangxin@nii.ac.jp)
+# Copyright 2023 National Institute of Informatics (author: Lin Zhang, zhanglin@nii.ac.jp)
+# Licensed under the BSD 3-Clause License.
+
 """
 model.py
 
@@ -28,13 +33,11 @@ from multi_scale.post import MaxPool1dLin_gmlp_scales
 #s3prl
 import s3prl.hub as hub
 device = 'cuda'
-__author__ = "Xin Wang, Lin Zhang"
-__email__ = "{wangxin, zhanglin}@nii.ac.jp"
-__copyright__ = "Copyright 2022, Xin Wang, Lin Zhang"
 
 ##############
 ## util
 ##############
+PS_PATH="/home/smg/zhanglin/workspace/PROJ/Public/CODE/PartialSpoof" #path to PartialSpoof
 
 Scale_num=7   
 SSL_shift=1   ##since SSL use 20ms as frame shift, we start from 1. and 0 is for 10 ms...
@@ -46,12 +49,12 @@ Frame_shifts_list= [pow(2, i) for i in np.arange(Scale_num)][SSL_shift:]
 LABEL_SCALE = 1
 Multi_scales=Frame_shifts * Base_step #[0.01, 0.02, 0.04, 0.08, 0.16]
 
-ASVSPOOF_PROTOCAL='../../project-NN-Pytorch-scripts.202102/project/02-asvspoof/DATA/asvspoof2019_LA/protocol.txt' #protocal of asvspoof2019
+ASVSPOOF_PROTOCAL=PS_PATH+'/project-NN-Pytorch-scripts.202102/project/02-asvspoof/DATA/asvspoof2019_LA/protocol.txt' #protocal of asvspoof2019
 
 
 hidd_dims ={'wav2vec':512, 'wav2vec2':768, 'hubert':768, 'wav2vec2_xlsr':1024, 'wavlm_base_plus':768, 'wav2vec2_local':1024}
 ssl_model='wav2vec2_local'
-ssl_ckpt='../../modules/ssl_pretrain/w2v_large_lv_fsh_swbd_cv.pt'
+ssl_ckpt=PS_PATH+'/modules/ssl_pretrain/w2v_large_lv_fsh_swbd_cv.pt'
 
 
 def protocol_parse(protocol_filepath):
@@ -607,7 +610,6 @@ class Loss():
                         tol_loss.append(seg_loss)
                     if(self.task_num==1):  #single-task
                         single_loss = seg_loss
-                        single_loss.requires_grad=True
                 else:
                     pass
 
