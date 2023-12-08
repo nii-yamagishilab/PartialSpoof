@@ -1,10 +1,10 @@
 As shown in the figure, we support three types EERs for detection and localization in the Partial Spoof scenario.
 
-1. Utterance-level EER 
+1. Utterance-level EER
 2. Segment-level EER
 3. [RangeEER](https://arxiv.org/pdf/2305.17739.pdf)
 
-<img src="../Figures/EERs.pdf" />
+<img src="../Figures/EERs.jpg" />
 
 
 
@@ -161,7 +161,7 @@ For localization tasks, we offer two types of metrics: **Segment-level EER** (Se
 
 For more details, refer to the paper:  [Range-Based Equal Error Rate for Spoof Localization](https://arxiv.org/abs/2305.17739) . For quick compare and understand SegmentEER and RangeEER, please see below figure (in the poster of [RangeEER paper](https://github.com/nii-yamagishilab/PartialSpoof/blob/main/Figures/PartialSpoof_rangeEER_IS23poster.pdf)).
 
-<img src="../Figures/SegmentEER_vs_RangeEER.pdf" />
+<img src="../Figures/SegmentEER_vs_RangeEER.jpg" />
 
 :exclamation:If you have to choose one metric, **I recommend using range-based EER**. This approach facilitates fairer comparisons of RangeEER across different studies. 
 
