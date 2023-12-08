@@ -1,4 +1,8 @@
-<img src="Figures/PartialSpoof_logo.png" alt="PartialSpoof_logo" style="zoom:22%;" />
+<div align=center>
+<img src="Figures/PartialSpoof_logo.png" width="60%">
+</div>
+
+
 
 This is the implementation of papers for Partial Spoof. And this repo is adapted from [project-NN-Pytorch-scripts](https://github.com/nii-yamagishilab/project-NN-Pytorch-scripts). 
 
@@ -18,7 +22,7 @@ Lin Zhang; Xin Wang; Erica Cooper; Nicholas Evans; Junichi Yamagishi
 5. [Acknowledgments and License](#ack)
 
 # <a name="update"/> 0. Updation
-* 2023-12: add metrics (EER and RangeEER) for localization (segment-level detection).
+* 2023-12: add metrics: EER for spoof detection; SegmentEER and RangeEER for spoof localization.
 * 2023-12: add folders for multiple random seeds, and update readme.
 * 2022-12: release multi-reso. and single-reso CMs.
 
@@ -52,7 +56,7 @@ Papers: Please refer to the link in [Folder and its paper](#folderintro)
 | 01singletask   | CM trained on the single task (either utterance-level or segment-level detection) in the paper [An Initial Investigation for Detecting Partially Spoofed Audio](https://nii-yamagishilab.github.io/publication/zhang-21-ca-interspeech/) (To be released) |
 | 02multitask    | CM trained on multi tasks (both utterance-level and segment-level detection) in the paper [Multi-task Learning in Utterance-level and Segmental-level Spoof Detection](https://nii-yamagishilab.github.io/publication/zhang-21-asvspoof/) (To be released) |
 | 03multireso    | Multi resolution CM in the paper [The PartialSpoof Database and Countermeasures for the Detection of Short Fake Speech Segments Embedded in an Utterance](https://ieeexplore.ieee.org/document/10003971) |
-| metric         | metric used for spoof (utterance-level) detection and (segment-level) localization [Range-Based Equal Error Rate for Spoof Localization](https://arxiv.org/abs/2305.17739) (To be released) |
+| metric         | metric used for spoof (utterance-level) detection and (segment-level) localization [Range-Based Equal Error Rate for Spoof Localization](https://arxiv.org/abs/2305.17739) ~~(To be released)~~ |
 
 
 
@@ -64,32 +68,55 @@ Please go to the `[Folder]/README.md` to read details of usages.
 
 ```
 PartialSpoof
-├── 01_download_database.sh		: Script used to download PartialSpoof from zenodo.
+├── 01_download_database.sh			: Script used to download PartialSpoof from zenodo.
 ├── 03multireso
-│   ├── env.sh
-│   ├── main.py
-│   ├── model.py
-│   ├── multi-reso
-│   └── single-reso
+│   ├── 01_download_pretrained_models.sh	: Script used to download pretrained models.
+│   ├── main.py
+│   ├── model.py			: Model structure and loss are in here! same for multi/single-reso.
+│   ├── multi-reso		: folder for multi-reso model
+│   ├── README.md
+│   └── single-reso		: folder for single-reso model
 │       └── {2, 4, 8, 16, 32, 64, utt}
 ├── config_ps				: Config files for experiments
-│   ├── config_test_on_dev.py
-│   └── config_test_on_eval.py
-├── database				: PartialSpoof Databases
-│   ├── dev				: Folder for dev set
-│   │   ├── dev.lst
-│   │   └── con_wav
+│   ├── config_test_on_dev.py
+│   └── config_test_on_eval.py
+├── env.sh						
+├── Figures
+│   ├── EERs.pdf
+│   └── PartialSpoof_logo.png
+├── LICENSE
+├── metric			
+│   ├── cal_EER.sh
+│   ├── RangeEER.py
+│   ├── README.md
+│   ├── rttm_tool.py
+│   ├── SegmentEER.py
+│   └── UtteranceEER.py
+├── database					: PartialSpoof Databases
+│   ├── train
+│   ├── dev						: Folder for dev set
+│   │   ├── con_data	: related data file. (following kaldi format)
+│   │   ├── con_wav		: waveform
+│   │   └── dev.lst		: waveform list
 │   ├── eval
+│   ├── label2num			: convert string labels to numerical labels.
+│   │   └── label2num_2cls_0sil		: bonafide/spoof (More to be released)
+│   ├── protocols
 │   ├── segment_labels
-│   └── train
+│   └── vad
+│       ├── dev
+│       ├── eval
+│       └── train
 ├── modules
-│   ├── gmlp.py
+│   ├── gmlp.py
+│   ├── LICENSE
 │   ├── multi_scale
 │   │   └── post.py
 │   ├── s3prl  	     			: s3prl repo 
 │   └── ssl_pretrain 			: Folder to save downloaded pretrained ssl model
 ├── project-NN-Pytorch-scripts.202102	: Modified project-NN-Pytorch-scripts repo
 └── README.md
+
 ```
 
 
