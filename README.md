@@ -1,18 +1,18 @@
 <div align=center>
 <img src="Figures/PartialSpoof_logo.png" width="60%">
 </div>
-Welcome to the story of PartialSpoof! This is the implementation of papers for Partial Spoof. And this repo is adapted from [project-NN-Pytorch-scripts](https://github.com/nii-yamagishilab/project-NN-Pytorch-scripts). Here are some links you might interested:
+:tada: Welcome to the story of Partial Spoof (PS)! 
 
-* [:arrow_down: PartialSpoof Database](https://zenodo.org/record/5766198)
-* [:headphones: Sample](https://nii-yamagishilab.github.io/zlin-demo/IS2021/index.html)
-* [:woman_technologist: Github for model](https://github.com/nii-yamagishilab/PartialSpoof) (You are here!).  :point_left::point_left:
-* [:woman_technologist: Github for data construction  (TBA)](https://github.com/nii-yamagishilab/PartialSpoof_database)
+ This repository is an implementation of the papers related to Partial Spoof. It is adapted from [project-NN-Pytorch-scripts](https://github.com/nii-yamagishilab/project-NN-Pytorch-scripts). Below are some links that you might be interested in:
 
-* :page_with_curl:Papers: Please refer to the link in [Folder and its paper](#folderintro)
+* :arrow_down: [PartialSpoof Database](https://zenodo.org/record/5766198)
+* :headphones: [Sample](https://nii-yamagishilab.github.io/zlin-demo/IS2021/index.html)
+* :woman_technologist: [Github for model](https://github.com/nii-yamagishilab/PartialSpoof) (You are here!).  :point_left::point_left:
+* :woman_technologist: [Github for data construction  (TBA)](https://github.com/nii-yamagishilab/PartialSpoof_database)
+* :page_with_curl: Papers: Please refer to the link in [Folder and its paper](#folderintro)
 
 
-
-Please feel free to give suggestions and feedback. : )
+Please feel free to give suggestions and feedback.:paw_prints: : )
 
 Lin Zhang; Xin Wang; Erica Cooper; Nicholas Evans; Junichi Yamagishi
 
@@ -20,13 +20,13 @@ Lin Zhang; Xin Wang; Erica Cooper; Nicholas Evans; Junichi Yamagishi
 
 # Outline
 
-0. [Updation](#update)
-2. [Folder and Its Paper](#folderintro)
-3. [Folder Structure](#folderstructure)
-4. [Citation](#citation)
-5. [Acknowledgments and License](#ack)
+0. :boom: [Updation](#update)
+1. :open_file_folder: [ Folder and Its Paper](#folderintro)
+2. :evergreen_tree: [Folder Structure](#folderstructure)
+3. :clipboard: [Citation](#citation)
+4. :handshake: [Acknowledgments and License](#ack)
 
-# <a name="update"/> 0. Updation
+# <a name="update"/>  :boom: Updation
 * 2023-12: add metrics: EER for spoof detection; SegmentEER and RangeEER for spoof localization.
 * 2023-12: add folders for multiple random seeds, and update readme.
 * 2022-12: release multi-reso. and single-reso CMs.
@@ -34,7 +34,7 @@ Lin Zhang; Xin Wang; Erica Cooper; Nicholas Evans; Junichi Yamagishi
 
 
 
-# <a name="folderintro"/> 1. Folder and its paper
+# <a name="folderintro"/>  :open_file_folder: Folder and its paper
 
 | Folder         | Paper                                                        |
 | -------------- | ------------------------------------------------------------ |
@@ -50,7 +50,7 @@ Please go to the `[Folder]/README.md` to read details of usages.
 
 
 
-# <a name="folderstructure"/> 2. Folder structure
+# <a name="folderstructure"/> :evergreen_tree: Folder structure
 
 ```
 PartialSpoof
@@ -107,7 +107,7 @@ PartialSpoof
 
 
 
-# <a name="citation"/> 3. Citation
+# <a name="citation"/> :clipboard: Citation
 
 It is appreciated if you can cite the corresponding paper when the idea, code, and pretrained model are helpful to your research.
 
@@ -148,13 +148,13 @@ It is appreciated if you can cite the corresponding paper when the idea, code, a
 
 
 
-# <a name="ack"/>4. Acknowledgments
+# <a name="ack"/> :handshake: Acknowledgments
 
 This study is partially supported by the Japanese-French joint national VoicePersonae project supported by JST CREST (JPMJCR18A6, JPMJCR20D3), JPMJFS2136 and the ANR (ANR-18-JSTS-0001), MEXT KAKENHI Grants (21K17775, 21H04906, 21K11951, 18H04112), Japan, and Google AI for Japan program.
 
 
 
-# License
+# :clipboard:License
 
 This project is mainly licensed under the BSD 3-Clause License (`./LICENSE`). 
 Each folder within the project may contain their corresponding LICENSE according to the external libraries used. Please refer to the README.md file in each folder for more details. 
