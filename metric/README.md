@@ -58,8 +58,8 @@ Below are instruction for each type of EER within `cal_EER.sh`
 bash <Path_to_PartialSpoof>/metric/cal_EER.sh multi-reso/exp-01 UttEER dev
 # Input is multi-reso/exp-01/log_output_dev, which has utt scores from all score branshes: [S_1, ..., S_K] as in model.py:573
 # Output all EER and threshold vectors
-# For example [EER_1, ..., EER_k, ..., EER_K], where EER_m is the k-th score branch.
-# default corresponding to measurment use score branch: 20ms, ..., 640ms.
+# For example [EER_1, ..., EER_k, ..., EER_K, EER_{utt}], where EER_m is the k-th score branch.
+# default corresponding to measurment use score branch: 20ms, ..., 640ms, utt.
 
 # It will implemented as:
 ASV_SCORES_FILE=${PS_PATH}"/database/protocols/PartialSpoof_LA_asv_scores/PartialSpoof.LA.asv."$dset".gi.trl.scores.txt"
