@@ -1,10 +1,16 @@
 <div align=center>
 <img src="Figures/PartialSpoof_logo.png" width="60%">
 </div>
+Welcome to the story of PartialSpoof! This is the implementation of papers for Partial Spoof. And this repo is adapted from [project-NN-Pytorch-scripts](https://github.com/nii-yamagishilab/project-NN-Pytorch-scripts). Here are some links you might interested:
+
+* [:arrow_down: PartialSpoof Database](https://zenodo.org/record/5766198)
+* [:headphones: Sample](https://nii-yamagishilab.github.io/zlin-demo/IS2021/index.html)
+* [:woman_technologist: Github for model](https://github.com/nii-yamagishilab/PartialSpoof) (You are here!).  :point_left::point_left:
+* [:woman_technologist: Github for data construction  (TBA)](https://github.com/nii-yamagishilab/PartialSpoof_database)
+
+* :page_with_curl:Papers: Please refer to the link in [Folder and its paper](#folderintro)
 
 
-
-This is the implementation of papers for Partial Spoof. And this repo is adapted from [project-NN-Pytorch-scripts](https://github.com/nii-yamagishilab/project-NN-Pytorch-scripts). 
 
 Please feel free to give suggestions and feedback. : )
 
@@ -15,7 +21,6 @@ Lin Zhang; Xin Wang; Erica Cooper; Nicholas Evans; Junichi Yamagishi
 # Outline
 
 0. [Updation](#update)
-1. [General Information](#general)
 2. [Folder and Its Paper](#folderintro)
 3. [Folder Structure](#folderstructure)
 4. [Citation](#citation)
@@ -29,26 +34,7 @@ Lin Zhang; Xin Wang; Erica Cooper; Nicholas Evans; Junichi Yamagishi
 
 
 
-
-# <a name="general"/> 1. PartialSpoof 
-
-Welcome to the story of PartialSpoof! Here are some links you might interested:
-
-* [:arrow_down: PartialSpoof Database](https://zenodo.org/record/5766198)
-* [:headphones: Sample](https://nii-yamagishilab.github.io/zlin-demo/IS2021/index.html)
-* [:woman_technologist: Github for model](https://github.com/nii-yamagishilab/PartialSpoof) (You are here!)
-* [:woman_technologist: Github for data construction  (TBA)](https://github.com/nii-yamagishilab/PartialSpoof_database)
-
-Papers: Please refer to the link in [Folder and its paper](#folderintro)
-
-
-
-
-
-
-
-
-## <a name="folderintro"/> 2. Folder and its paper
+# <a name="folderintro"/> 1. Folder and its paper
 
 | Folder         | Paper                                                        |
 | -------------- | ------------------------------------------------------------ |
@@ -64,7 +50,7 @@ Please go to the `[Folder]/README.md` to read details of usages.
 
 
 
-## <a name="folderstructure"/> 3. Folder structure
+# <a name="folderstructure"/> 2. Folder structure
 
 ```
 PartialSpoof
@@ -121,7 +107,7 @@ PartialSpoof
 
 
 
-## <a name="citation"/> Citation
+# <a name="citation"/> 3. Citation
 
 It is appreciated if you can cite the corresponding paper when the idea, code, and pretrained model are helpful to your research.
 
@@ -162,13 +148,13 @@ It is appreciated if you can cite the corresponding paper when the idea, code, a
 
 
 
-## <a name="ack"/>Acknowledgments
+# <a name="ack"/>4. Acknowledgments
 
 This study is partially supported by the Japanese-French joint national VoicePersonae project supported by JST CREST (JPMJCR18A6, JPMJCR20D3), JPMJFS2136 and the ANR (ANR-18-JSTS-0001), MEXT KAKENHI Grants (21K17775, 21H04906, 21K11951, 18H04112), Japan, and Google AI for Japan program.
 
 
 
-## License
+# License
 
 This project is mainly licensed under the BSD 3-Clause License (`./LICENSE`). 
 Each folder within the project may contain their corresponding LICENSE according to the external libraries used. Please refer to the README.md file in each folder for more details. 
