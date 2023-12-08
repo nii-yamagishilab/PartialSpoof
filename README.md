@@ -12,7 +12,7 @@
 * :page_with_curl: Papers: Please refer to the link in [Folder and its paper](#folderintro)
 
 
-Please feel free to give suggestions and feedback.:paw_prints: : )
+Please feel free to give suggestions and feedback. :paw_prints: 
 
 Lin Zhang; Xin Wang; Erica Cooper; Nicholas Evans; Junichi Yamagishi
 
