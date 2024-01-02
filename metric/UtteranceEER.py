@@ -21,6 +21,7 @@ np.set_printoptions(linewidth=100000)
 parser = argparse.ArgumentParser(add_help=False)
 parser.add_argument('--pred_file',type=str, default='')
 parser.add_argument('--asv_score_file',type=str, default='To calculate t-DCF.')
+parser.add_argument('--utt2label_file',type=str, default='../../../database/ASVspoof2019.LA.cm.dev.trl.txt')
         #ASV_SCORES_FILE="{}/database/protocols/PartialSpoof_LA_asv_scores/PartialSpoof.LA.asv.{}.gi.trl.scores.txt".format(PS_PATH, dset)
         # ZhangLin: But I personally do not recommend using t-DCF, because Partial Spoof is designed 
         # not only for ASVspoof, which aims to deceive machines, 
@@ -33,6 +34,7 @@ PS_PATH = "/home/smg/zhanglin/workspace/PROJ/Public/CODE/PartialSpoof"
 print_mean = True #whetehr print mean of EERs for all random seeds 
 print_each = True #whetehr print each EER for all random seeds 
 SCORE_TYPE='min'
+utt2label=dict([ [line.split()[1].strip(), (line.split()[4]).strip()] for line in open(args.utt2label_file) ])
 
 
 scale_num = 7
@@ -47,8 +49,8 @@ def parse_txt(file_path, col):
         for line in file_ptr:
             if line.startswith('Output,'):
                 temp = line.rstrip('\n').split(',')
-                flag = int(temp[2])
-                if flag:
+                flag = utt2label[temp[1].strip()]
+                if (flag == 'bonafide'):
                     bonafide.append(float(temp[col]))
                 else:
                     #spoofed.append(pow(float(temp[col]),2))

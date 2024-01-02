@@ -15,7 +15,8 @@ if [[ ${metric} == "UttEER"  ]]; then
     ASV_SCORES_FILE=${PS_PATH}"/database/protocols/PartialSpoof_LA_asv_scores/PartialSpoof.LA.asv."$dset".gi.trl.scores.txt"
     python ${PS_PATH}/metric/UtteranceEER.py \
         --pred_file ${pred_DIR}/output/log_output_${dset} \
-        --asv_score_file ${ASV_SCORES_FILE}
+        --asv_score_file ${ASV_SCORES_FILE} \
+        --utt2label_file ${PS_PATH}/database/protocols/PartialSpoof_LA_cm_protocols/PartialSpoof.LA.cm."$dset".trl.txt
 fi
 
 
