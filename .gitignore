@@ -8,6 +8,7 @@
 03multireso/single-reso/64/01
 job.sh
 .DS_Store
+*tmp*
 
 #database
 database
