@@ -55,6 +55,7 @@ parser.add_argument('--dset',type=str, default='dev', help="To read ${dset}_scor
 parser.add_argument('--sub_dir_list',type=str, nargs='+', default=['exp-01', 'exp-02', 'exp-03'], 
         help="""List of sub_dirs for experiments with different random seeds. 
         Set as '.' if model_dir is the sole experiment directory.""")
+parser.add_argument('--output_name',type=str, default='output', help="The name of the output")
 parser.add_argument('--save_dir',type=str, default='Loc_SegmentEER/singlereso/64',
         help="Directory for saving calculated SegmentEER results.")
 parser.add_argument('--ref_rttm',type=str, default='../../../database/dev/con_data/rttm_2cls_0sil',
@@ -318,7 +319,7 @@ def main():
         for sml_name in args.sub_dir_list: 
             #read all models (especially with different seeds) within this dir.
             sub_dir = os.path.join(args.model_dir, sml_name)   
-            model_out_dir=os.path.join(args.model_dir, sub_dir, 'output')
+            model_out_dir=os.path.join(sub_dir, args.output_name)
 
             eer_scales=[]
             threshold_scales=[]
