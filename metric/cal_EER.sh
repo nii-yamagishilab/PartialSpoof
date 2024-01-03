@@ -27,7 +27,7 @@ if [[ ${metric} == "SegEER"  ]]; then
     python ${PS_PATH}/metric/SegmentEER.py \
         --ref_rttm ${PS_PATH}/database/${dset}/con_data/rttm_2cls_0sil \
         --model_dir ${pred_DIR} \
-	--sml_dir exp-01 exp-02 exp-03 \
+	--sub_dir_list exp-01 exp-02 exp-03 \
 	--dset ${dset} \
         --reco2dur ${PS_PATH}/database/${dset}/con_data/reco2dur \
 	--label2num_file ${PS_PATH}/database/label2num/label2num_2cls_0sil \
