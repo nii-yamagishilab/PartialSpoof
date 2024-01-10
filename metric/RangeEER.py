@@ -242,6 +242,7 @@ def initial(args, sco_pd):
     init_path = os.path.join(args.save_dir,"RangeEER_det")
     if(os.path.exists(init_path)):
         eer_init = np.loadtxt(init_path).reshape(-1, 4)
+        eer_init = eer_init[(-eer_init[:, -1]).argsort()[:]]
         eer_init_left = eer_init[eer_init[:, 1] < eer_init[:, 2]]
         eer_init_right = eer_init[eer_init[:, 1] >= eer_init[:, 2]]
         if(len(eer_init_left) > 0):
@@ -322,7 +323,8 @@ def main():
 
     if(os.path.exists(save_file)):
         eer_ary = np.loadtxt(save_file).reshape(-1, 4)
-    eer_res = eer_ary[(-eer_ary[:, -1]).argsort()[:]].tolist()
+    eer_res = set(eer_ary[(-eer_ary[:, -1]).argsort()[:]].tolist())
+    #set
     min_idx = np.argmin(eer_ary[:,3])
 
     print("RangeEER={}, with threshold = {}".format(np.mean(eer_res[min_idx][1:2]), th_mid))
