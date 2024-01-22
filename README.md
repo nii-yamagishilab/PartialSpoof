@@ -1,3 +1,11 @@
+Lin Zhang will defend her thesis on January 30th, 2024, from 16:00 to 17:00 (GMT+9). In her defense, she will summarize her work on PartialSpoof up to this point. Please register [here](https://forms.office.com/Pages/ResponsePage.aspx?id=4sLBp80l1USD33EvWbAu2RNcexPwvFBCrLfoO3z4WOJUNklWSEQ5NEY2TzQ1UUVET0dQOTI3RzdTSS4u) if you are interested!
+
+
+
+
+
+
+
 <div align=center>
 <img src="Figures/PartialSpoof_logo.png" width="60%">
 </div>

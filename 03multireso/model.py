@@ -465,7 +465,7 @@ class Model(torch_nn.Module):
         new_score_scales = {}
         target_vec_scales = {}
 
-        #time omputation, I don know how to iterate list in dict at the same time 
+        #TODO: iterate list in dict to save time.
         for shift, scores in score_scales.items():
             #print(scores.shape)
             #seq_len = int(scores.shape[0] /batch_size) #DataParallel do not accept reshape(-1) .... 
