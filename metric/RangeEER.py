@@ -323,11 +323,10 @@ def main():
 
     if(os.path.exists(save_file)):
         eer_ary = np.loadtxt(save_file).reshape(-1, 4)
-    eer_res = set(eer_ary[(-eer_ary[:, -1]).argsort()[:]].tolist())
-    #set
-    min_idx = np.argmin(eer_ary[:,3])
+    eer_res = np.unique(eer_ary[(-eer_ary[:, -1]).argsort()[:]], axis=0)
+    min_idx = np.argmin(eer_res[:,3])
 
-    print("RangeEER={}, with threshold = {}".format(np.mean(eer_res[min_idx][1:2]), th_mid))
+    print("RangeEER={}, with threshold = {}".format(np.mean(eer_res[min_idx][1:3]), th_mid))
 
 if __name__ == '__main__':
     main()
