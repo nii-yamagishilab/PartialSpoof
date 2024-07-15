@@ -1,10 +1,7 @@
-Lin Zhang will defend her thesis on January 30th, 2024, from 16:00 to 17:00 (GMT+9). In her defense, she will summarize her work on PartialSpoof up to this point. Please feel free to join [here](https://nii.webex.com/nii-en/j.php?MTID=mbf279f7674ea083b8b33a01ffbb07fba)
-~~register [here](https://forms.office.com/Pages/ResponsePage.aspx?id=4sLBp80l1USD33EvWbAu2RNcexPwvFBCrLfoO3z4WOJUNklWSEQ5NEY2TzQ1UUVET0dQOTI3RzdTSS4u)~~ if you are interested!
+Lin Zhang will give a talk about Partial Spoof on **Wednesday, July 17 at 10 AM (GMT+2)**, SPSC Webinar! Registration [Here](https://www.spsc-sig.org/form/webinar-registration-2024-07-01 )!
+Curious to learn more about the story of Partial Spoof? Want to know what we've achieved? Interested in exploring new research topics, especially in speech security? Please come and discuss this exciting and trending topic here! 
 
-
-
-
-
+ 
 
 
 <div align=center>
@@ -51,7 +48,8 @@ Lin Zhang; Xin Wang; Erica Cooper; Nicholas Evans; Junichi Yamagishi
 | 01singletask   | CM trained on the single task (either utterance-level or segment-level detection) in the paper [An Initial Investigation for Detecting Partially Spoofed Audio](https://nii-yamagishilab.github.io/publication/zhang-21-ca-interspeech/) (To be released) |
 | 02multitask    | CM trained on multi tasks (both utterance-level and segment-level detection) in the paper [Multi-task Learning in Utterance-level and Segmental-level Spoof Detection](https://nii-yamagishilab.github.io/publication/zhang-21-asvspoof/) (To be released) |
 | 03multireso    | Multi resolution CM in the paper [The PartialSpoof Database and Countermeasures for the Detection of Short Fake Speech Segments Embedded in an Utterance](https://ieeexplore.ieee.org/document/10003971) |
-| metric         | metric used for spoof (utterance-level) detection and (segment-level) localization [Range-Based Equal Error Rate for Spoof Localization](https://arxiv.org/abs/2305.17739) ~~(To be released)~~ |
+| 04spfdia_3C    | Countermeasure-Condition Clustering (3C) model for [Spoof Diarization: "What Spoofed When" in Partially Spoofed Audio](https://arxiv.org/abs/2406.07816) (To be released) |
+| metric         | metric used for spoof (utterance-level) detection and (segment-level) localization [Range-Based Equal Error Rate for Spoof Localization](https://arxiv.org/abs/2305.17739)|
 
 
 
