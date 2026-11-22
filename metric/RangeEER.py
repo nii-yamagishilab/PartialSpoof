@@ -89,15 +89,15 @@ def cal_eer_by_scolab(sco_lab_pd, return_fpr_fnr=False):
         gen=sco_lab_pd[sco_lab_pd.True_SpoofRatio==0.0].Predict_Score_1
         spf=sco_lab_pd[sco_lab_pd.True_SpoofRatio>0.0].Predict_Score_1
 
-    fpr, fnr, thresholds = eval_asvspoof.compute_det_curve(gen, spf)
+    frr, far, thresholds = eval_asvspoof.compute_det_curve(gen, spf)
 
-    abs_diffs = np.abs(frr - fpr)
+    abs_diffs = np.abs(frr - far)
     min_index = np.argmin(abs_diffs)
 
     if(return_fpr_fnr):
-        return frr[min_index], fpr[min_index], thresholds[min_index]
+        return frr[min_index], far[min_index], thresholds[min_index]
     else:
-        eer = np.mean((frr[min_index], fpr[min_index]))
+        eer = np.mean((frr[min_index], far[min_index]))
         return eer, thresholds[min_index]
 
 
@@ -303,6 +303,7 @@ def main():
     #2. bisect
     #early_tag = True #we'd like to start with the point fpr < fnr.
     while(th_left < th_right and abs(fpr_mid-fnr_mid) > args.prec ):
+        previous_mid_per = th_mid_per
 
         if((fpr_left - fnr_left) * (fpr_mid - fnr_mid) < 0 ):
             th_right, th_right_per = th_mid, th_mid_per
@@ -320,6 +321,10 @@ def main():
         with open(save_file, 'ab') as f:
             np.savetxt( f, np.array([th_mid, fpr_mid, fnr_mid, abs(fpr_mid - fnr_mid)]).reshape(-1,4))
         print(np.array([th_mid, fpr_mid, fnr_mid, abs(fpr_mid-fnr_mid)]).reshape(-1, 4))    
+
+        # The rates are step functions. Stop when bisection cannot move the midpoint.
+        if th_mid_per == previous_mid_per:
+            break
 
     if(os.path.exists(save_file)):
         eer_ary = np.loadtxt(save_file).reshape(-1, 4)
